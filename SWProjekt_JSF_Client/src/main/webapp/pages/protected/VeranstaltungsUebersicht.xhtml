@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:head>
+        <title>Lehrplanung</title>
+        <h:outputStylesheet library="css" name="/resources/css/main.css" />
+    </h:head>
+    
+    <h:body>
+		<h:form id = "veranstaltungenUebersichtAnzeigenForm">
+			<h:inputHidden value="#{veranstaltung.veranstaltungsId}" />
+				
+			<h:commandButton action="#{veranstaltungMB.starteVeranstaltungBearbeiten()}" value="Bearbeiten">
+				<f:setPropertyActionListener target="#{veranstaltungMB.veranstaltungTO}" value="#{veranstaltung}"/>
+			</h:commandButton>
+				
+		<h:commandButton value="Exportieren" action="#{exportMB.exportStartenClicked()}" style=" width: 200px" />
+		
+		<h:dataTable 
+ 				value="#{veranstaltungMB.starteVeranstaltungenUebersichtLaden() }" 
+	 			var="termin"
+	 			styleClass="table" 
+	 			headerClass="tableColumnsHeader"
+	 			rowClasses="tableFirstLine,tableNextLine">
+	 		<h:column>
+	 			<f:facet name="header"><h:outputText value="ModulNr" /></f:facet>
+	 			#{veranstaltung.modulNr}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">ModulName</f:facet>
+	 			#{veranstaltung.modulName}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">KursNr</f:facet>
+	 			#{veranstaltung.kursNr}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">KursName</f:facet>
+	 			#{veranstaltung.kursName}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">Sprache</f:facet>
+	 			#{veranstaltung.sprache}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">Studiengruppe</f:facet>
+	 			#{veranstaltung.studiengruppe}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">Dozent</f:facet>
+	 			#{veranstaltung.dozent}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">Lehrbeauftragter</f:facet>
+	 			#{veranstaltung.lehrbeauftragter}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">AnzahlLetztesSemester</f:facet>
+	 			#{veranstaltung.anzahlLetztesSemester}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">Bemerkung</f:facet>
+	 			#{veranstaltung.bemerkung}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">Pruefungsform</f:facet>
+	 			#{veranstaltung.pruefungsform}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">SWS</f:facet>
+	 			#{veranstaltung.sws}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">Turnus</f:facet>
+	 			#{veranstaltung.turnus}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">Vertiefung</f:facet>
+	 			#{veranstaltung.vertiefung}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">ModulAngelegt</f:facet>
+	 			#{veranstaltung.modulAngelegt}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">lvAngelegt</f:facet>
+	 			#{veranstaltung.lvAngelegt}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">Modulanmeldung</f:facet>
+	 			#{veranstaltung.modulanmeldung}
+	 		</h:column>
+	 	</h:dataTable>
+		</h:form>
+	</h:body>
+
+</html>

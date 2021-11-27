@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+	<h:head>
+        <title>Lehrplanung</title>
+        <h:outputStylesheet library="css" name="/resources/css/main.css" />
+    </h:head>
+    
+    <h:body>
+		<h3>Dateiupload</h3>    
+    	<br/>
+    </h:body>
+    	<form method="post" enctype="multipart/form-data">
+  		<label>Bitte waehlen Sie die Excel-Datei
+  		  <input name="datei" type="file" size="50" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/> 
+  		</label>  
+  		<input type = "submit" value="Upload" name="upload" id="upload" />
+		</form>
+
+ 
+
+</html>

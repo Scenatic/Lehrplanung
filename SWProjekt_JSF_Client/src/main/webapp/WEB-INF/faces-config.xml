@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+    version="2.3">
+	<managed-bean>
+		<managed-bean-name>userMB</managed-bean-name>
+		<managed-bean-class>lehrplanung.mb.UserMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>exportMB</managed-bean-name>
+		<managed-bean-class>lehrplanung.mb.ExportMB</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>semesterMB</managed-bean-name>
+		<managed-bean-class>lehrplanung.mb.SemesterMB</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>applicationSecurityConfig</managed-bean-name>
+		<managed-bean-class>lehrplanung.mb.ApplicationSecurityConfig</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>menuMB</managed-bean-name>
+		<managed-bean-class>lehrplanung.mb.MenuMB</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>veranstaltungMB</managed-bean-name>
+		<managed-bean-class>lehrplanung.mb.VeranstaltungMB</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>	
+
+	<!-- Hauptmenue -->
+	<navigation-rule>
+		<from-view-id>/pages/protected/Hauptmenue.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>DATEI_EXPORT</from-outcome>
+			<to-view-id>/pages/protected/DateiExport.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>DATEI_IMPORT</from-outcome>
+			<to-view-id>/pages/protected/DateiImport.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>SEMESTER_ANLEGEN</from-outcome>
+			<to-view-id>/pages/protected/SemesterAnlegen.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>LINK_VERSENDEN</from-outcome>
+			<to-view-id>/pages/protected/LinkVersenden.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>UEBERSICHT_STARTEN</from-outcome>
+			<to-view-id>/pages/protected/VeranstaltungsUebersicht.xhtml</to-view-id>
+		</navigation-case>		
+		<navigation-case>
+			<from-outcome>LOGOUT</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Datei Export -->
+	<navigation-rule>
+		<from-view-id>/pages/protected/DateiExport.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>BACK_TO_HAUPTMENUE</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>LOGOUT</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Datei Import -->
+	<navigation-rule>
+		<from-view-id>/pages/protected/DateiImport.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>BACK_TO_HAUPTMENUE</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>LOGOUT</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Link Versenden -->
+	<navigation-rule>
+		<from-view-id>/pages/protected/LinkVersenden.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>BACK_TO_HAUPTMENUE</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>LOGOUT</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+
+		<!-- Semeseter Anlegen -->
+	<navigation-rule>
+		<from-view-id>/pages/protected/SemesterAnlegen.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>BACK_TO_HAUPTMENUE</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>LOGOUT</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Veranstaltungs Eingabe -->
+	<navigation-rule>
+		<from-view-id>/pages/protected/VeranstaltungsEingabe.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>BACK_TO_HAUPTMENUE</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>LOGOUT</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Veranstaltungs Uebersicht -->
+	<navigation-rule>
+		<from-view-id>/pages/protected/VeranstaltungsUebersicht.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>BACK_TO_HAUPTMENUE</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>LOGOUT</from-outcome>
+			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+
+</faces-config>

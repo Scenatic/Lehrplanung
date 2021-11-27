@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Lehrplanung</title>
+        <h:outputStylesheet library="css" name="/resources/css/main.css" />
+    </h:head>
+    <h:body>
+       <h3>Lehrplanungsanwendung</h3>
+        <br/> 
+		<h:outputText value="Welcome #{userMB.user.username}" /> || 
+		<h:commandLink action="#{userMB.logOut()}" value="Abmelden" >
+			<f:ajax execute="@form" render="@form" />
+		</h:commandLink>
+		<br/>	<br/>
+		<h:form id = "hauptmenue">
+            <h:commandButton 
+            			value="Semester anlegen" 
+           				action="#{menueMB.starteSemesterAnlegen}"
+            			style=" width: 200px"
+            			rendered="true">
+            	<f:ajax execute="@form" render="@form" />
+            </h:commandButton>     			
+            <br />
+            <h:commandButton 
+             			value="Datei importieren" 
+             			action="#{menueMB.starteDateiImportieren}"
+             			style=" width: 200px" 
+             			>
+              <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+            <br />
+            <h:commandButton 
+             			value="Datei exportieren" 
+             			action="#{menueMB.starteDateiExportieren}"
+             			style=" width: 200px" 
+             			>
+              <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+            <br />
+            <h:commandButton 
+             			value="Link versenden" 
+             			action="#{menueMB.starteLinkVersenden}"
+             			style=" width: 200px" 
+             			>
+              <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+            <br />
+            <h:commandButton 
+             			value="Uebersicht" 
+             			action="#{menueMB.starteUebersicht}"
+             			style=" width: 200px" 
+             			>
+              <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+            <br />
+            <br />
+            <br />
+            <h:commandButton 
+		            	value="Logout" 
+		            	action="#{userMB.logOut()}" 
+		            	style=" width: 200px">
+            	 <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+            <br />
+           
+        </h:form>
+    </h:body>
+</html>
