@@ -20,6 +20,11 @@ public class SemesterTO implements Serializable{
 	public SemesterTO() {
 	}
 	
+	public SemesterTO(String jahr, boolean sommersemester) {
+		this.jahr = jahr;
+		this.sommersemester = sommersemester;
+	}
+	
 	public Semester toSemester() {
 		
 		Semester semester = new Semester();

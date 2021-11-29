@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import de.lehrplanung.planung.entity.SemesterTO;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
@@ -40,6 +42,12 @@ public class Semester implements Serializable {
 	@JoinColumn(name="semesterId")
 	private List<Veranstaltung> veranstaltungen;
 	
+	public SemesterTO toSemesterTO() {
+		SemesterTO semesterTO = new SemesterTO(
+				this.getJahr(),
+				this.isSommersemester());
+		return semesterTO;
+	}
 	
 	public Semester() {
 	}

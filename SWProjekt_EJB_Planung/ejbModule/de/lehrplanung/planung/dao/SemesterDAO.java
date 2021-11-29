@@ -1,5 +1,7 @@
 package de.lehrplanung.planung.dao;
 
-public class SemesterDAO {
+import de.lehrplanung.planung.entity.impl.Semester;
+
+public class SemesterDAO extends GenericDAO<Semester>{
 
 }
