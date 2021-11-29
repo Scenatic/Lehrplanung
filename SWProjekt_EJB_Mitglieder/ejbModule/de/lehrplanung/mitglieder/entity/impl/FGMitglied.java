@@ -16,6 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import de.lehrplanung.mitglieder.entity.FGMitgliedTO;
+import de.lehrplanung.mitglieder.entity.FachgruppeTO;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
@@ -51,6 +54,16 @@ public class FGMitglied implements Serializable{
 		this.vorname = vorname;
 		this.eMail = eMail;
 		this.fachgruppe = fachgruppe;
+	}
+	
+	public FGMitgliedTO toFGMitgliedTO() {
+		FGMitgliedTO fgMitgliedTO = new FGMitgliedTO();
+		fgMitgliedTO.setName(this.name);
+		fgMitgliedTO.setVorname(this.vorname);
+		fgMitgliedTO.seteMail(this.eMail);
+		FachgruppeTO fachgruppeTO = this.fachgruppe.toFachgruppeTO();
+		fgMitgliedTO.setFachgruppeTO(fachgruppeTO);
+		return fgMitgliedTO;
 	}
 
 	public String getName() {

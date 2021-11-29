@@ -14,6 +14,10 @@ public class FGMitgliedTO implements Serializable{
 	String eMail;
 	FachgruppeTO fachgruppeTO;
 	
+	public FGMitgliedTO() {
+		
+	}
+	
 	public FGMitgliedTO(String name, String vorname, String eMail, FachgruppeTO fachgruppeTO) {
 		this.name = name;
 		this.vorname = vorname;
