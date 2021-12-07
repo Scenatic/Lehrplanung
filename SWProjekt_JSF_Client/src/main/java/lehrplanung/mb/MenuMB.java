@@ -18,18 +18,22 @@ public class MenuMB {
 	
 	public MenuMB() {}
 	
-	@RolesAllowed("FGSPRECHER")
-	public String starteSemesterAnlegen(){
-		
-		if (securityContext.isCallerInRole("FGSPRECHER")) {
-			System.out.println("Semester Anlegen");
-			return "SEMESTER_ANLEGEN";
-		} else {
-			System.out.println("Keine Rechte zum Anlegen eines Semesters");
-			return "STAY_ON_PAGE";	
-		}
-		
-		
+//	@RolesAllowed("FGSPRECHER")
+//	public String starteSemesterAnlegen(){
+//		
+//		if (securityContext.isCallerInRole("FGSPRECHER")) {
+//			System.out.println("Semester Anlegen");
+//			return "SEMESTER_ANLEGEN";
+//		} else {
+//			System.out.println("Keine Rechte zum Anlegen eines Semesters");
+//			return "STAY_ON_PAGE";	
+//		}
+//		
+//		
+//	}
+	
+	public String starteSemesterAnlegen() {
+		return "SEMESTER_ANLEGEN";
 	}
 	
 	public String starteDateiImportieren() {
