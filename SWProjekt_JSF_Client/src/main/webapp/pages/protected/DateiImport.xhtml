@@ -14,13 +14,29 @@
     <h:body>
 		<h3>Dateiupload</h3>    
     	<br/>
-    </h:body>
-    	<form method="post" enctype="multipart/form-data">
+    	
+<!--	<form method="post" enctype="multipart/form-data">
   		<label>Bitte waehlen Sie die Excel-Datei
   		  <input name="datei" type="file" size="50" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/> 
   		</label>  
   		<input type = "submit" value="Upload" name="upload" id="upload" />
 		</form>
+ -->    
+ 
+		<h:selectOneMenu id="list" value="#{importMB.semester}">
+			<f:selectItems value="#{importMB.geladeneSemester}"/>
+		</h:selectOneMenu> 		
+ 
+ 		<h:form enctype="multipart/form-data">
+ 			<h:inputFile value="#{importMB.uploadedFile}">
+<!-- 				<f:ajax listener="#{importMB.upload}" />  -->
+ 			</h:inputFile>
+ 		</h:form>
+		    
+    	
+    	
+    </h:body>
+
 
  
 

@@ -33,9 +33,9 @@
 						<f:selectItem itemValue="FALSE" itemLabel="WiSe"/>
 				</h:selectOneRadio>
 				
-				<h:selectOneListbox id="list" value="#{semesterMB.semesterTO.jahr}">
+				<h:selectOneMenu id="list" value="#{semesterMB.semesterTO.jahr}">
 					<f:selectItems value="#{semesterMB.jahre}"/>
-				</h:selectOneListbox>
+				</h:selectOneMenu>
 							
 <!--				<h:outputLabel value="Jahr" />
 				<h:inputText value="#{semesterMB.semesterTO.jahr}" />

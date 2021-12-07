@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SWProjekt_Lehrplanung_EAP">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="SWProjekt_EJB_Planung.jar" deploy-path="/" handle="module:/resource/SWProjekt_EJB_Planung/SWProjekt_EJB_Planung">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SWProjekt_EJB_Mitglieder.jar" deploy-path="/" handle="module:/resource/SWProjekt_EJB_Mitglieder/SWProjekt_EJB_Mitglieder">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SWProjekt_JSF_Client.war" deploy-path="/" handle="module:/resource/SWProjekt_JSF_Client/SWProjekt_JSF_Client">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SWProjekt_Security.jar" deploy-path="/" handle="module:/resource/SWProjekt_Security/SWProjekt_Security">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
