@@ -28,8 +28,8 @@
       <url-pattern>/pages/protected/*</url-pattern>     
     </web-resource-collection>
     <auth-constraint>
-      <role-name>FGSprecher</role-name>
-      <role-name>FGMitglied</role-name>
+      <role-name>FGSPRECHER</role-name>
+      <role-name>FGMITGLIED</role-name>
     </auth-constraint>
     <user-data-constraint>
    		<transport-guarantee>NONE</transport-guarantee>
@@ -37,10 +37,10 @@
   </security-constraint>
    
   <security-role>
-  	<role-name>FGSprecher</role-name>
+  	<role-name>FGSPRECHER</role-name>
   </security-role>
     <security-role>
-  	<role-name>FGMitglied</role-name>
+  	<role-name>FGMITGLIED</role-name>
   </security-role>
   
   

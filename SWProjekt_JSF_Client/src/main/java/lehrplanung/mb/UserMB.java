@@ -42,7 +42,7 @@ public class UserMB implements Serializable {
 		System.out.println("getUser() in UserMB called");
 		if(user == null){
 			
-			System.out.println("User hat Rolle FGSprecher: "+securityContext.isCallerInRole("FGSprecher"));
+			System.out.println("User hat Rolle FGSprecher: "+securityContext.isCallerInRole("FGSPRECHER"));
 			String username = securityContext.getCallerPrincipal().getName();
 			user = userFacade.findUserByName(username);
 		}

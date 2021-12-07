@@ -9,7 +9,7 @@ import javax.security.enterprise.SecurityContext;
 
 @Named("menueMB")
 @RequestScoped
-@RolesAllowed({"ARZT","MATERIALMANAGER"})
+@RolesAllowed({"FGSPRECHER","MATERIALMANAGER"})
 public class MenuMB {
 
 	@SuppressWarnings("cdi-ambiguous-dependency")
@@ -18,10 +18,10 @@ public class MenuMB {
 	
 	public MenuMB() {}
 	
-	@RolesAllowed("FGSprecher")
+	@RolesAllowed("FGSPRECHER")
 	public String starteSemesterAnlegen(){
 		
-		if (securityContext.isCallerInRole("FGSprecher")) {
+		if (securityContext.isCallerInRole("FGSPRECHER")) {
 			System.out.println("Semester Anlegen");
 			return "SEMESTER_ANLEGEN";
 		} else {
