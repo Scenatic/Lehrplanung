@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 public abstract class GenericDAO<T> {
 
-private final String UNIT_NAME = "HA2_FGMITGLIED_EJB";
+private final String UNIT_NAME = "SWPROJEKT_FGMITGLIED_EJB";
 
 	
 	@PersistenceContext(unitName=UNIT_NAME)
