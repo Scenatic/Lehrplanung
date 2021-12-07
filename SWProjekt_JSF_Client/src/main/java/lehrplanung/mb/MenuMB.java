@@ -40,10 +40,6 @@ public class MenuMB {
 		return "DATEI_IMPORT";
 	}
 	
-	public String starteDateiExportieren() {
-		return "DATEI_EXPORT";
-	}
-	
 	public String starteLinkVersenden() {
 		return "LINK_VERSENDEN";
 	}

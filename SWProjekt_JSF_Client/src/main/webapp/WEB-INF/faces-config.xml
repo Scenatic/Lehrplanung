@@ -39,10 +39,6 @@
 	<navigation-rule>
 		<from-view-id>/pages/protected/Hauptmenue.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>DATEI_EXPORT</from-outcome>
-			<to-view-id>/pages/protected/DateiExport.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
 			<from-outcome>DATEI_IMPORT</from-outcome>
 			<to-view-id>/pages/protected/DateiImport.xhtml</to-view-id>
 		</navigation-case>

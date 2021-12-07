@@ -20,11 +20,11 @@ public class VeranstaltungMB implements Serializable{
 	private VeranstaltungTO veranstaltungTO;
 	
 	public String eingabeSpeichernClicked() {
-		return "BACK_TO_MENUE";
+		return "BACK_TO_HAUPTMENUE";
 	}
 	
 	public String eingabeAbbrechenClicked() {
-		return "BACK_TO_MENUE";
+		return "BACK_TO_HAUPTMENUE";
 	}
 	
 //	public List<VeranstaltungTO> starteVeranstaltungenLaden() {

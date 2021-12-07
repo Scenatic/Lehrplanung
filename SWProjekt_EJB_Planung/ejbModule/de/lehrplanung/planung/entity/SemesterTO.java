@@ -30,8 +30,8 @@ public class SemesterTO implements Serializable{
 		Semester semester = new Semester();
 		semester.setJahr(this.jahr);
 		semester.setSommersemester(this.sommersemester);
-		for (VeranstaltungTO veranstaltungenTO:this.veranstaltungen)
-			semester.getVeranstaltungen();
+//		for (VeranstaltungTO veranstaltungenTO:this.veranstaltungen)
+//			semester.getVeranstaltungen();
 		
 		return semester;
 	}
