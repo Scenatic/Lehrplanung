@@ -3,6 +3,9 @@
 	<name>SWProjekt_JSF_Client</name>
 	<comment></comment>
 	<projects>
+		<project>SWProjekt_EJB_Mitglieder</project>
+		<project>SWProjekt_EJB_Planung</project>
+		<project>SWProjekt_Security</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
