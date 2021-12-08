@@ -32,7 +32,7 @@ public class ExcelImportieren implements IExcelImportieren {
 		List<VeranstaltungTO> returnList = new ArrayList<VeranstaltungTO>();
 		
 		try {
-			//File file = new File("C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt");
+			file = new File("C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt\\QuantitativeMethoden_SS2021.xlsx");
 			FileInputStream fis = new FileInputStream(file);
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 			XSSFSheet sheet = wb.getSheetAt(0);

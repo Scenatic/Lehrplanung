@@ -13,5 +13,10 @@
 			<attribute name="owner.project.facets" value="jst.ejb"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Niklas/Desktop/Studium/5. Semester/Softwareprojekt/ApachePOI/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Niklas/Desktop/Studium/5. Semester/Softwareprojekt/ApachePOI/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Niklas/Desktop/Studium/5. Semester/Softwareprojekt/ApachePOI/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Niklas/Desktop/Studium/5. Semester/Softwareprojekt/ApachePOI/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Niklas/Desktop/Studium/5. Semester/Softwareprojekt/ApachePOI/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
