@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import de.lehrplanung.planung.entity.SemesterTO;
+import de.lehrplanung.planung.usecase.IExcelImportieren;
 import de.lehrplanung.planung.usecase.ISemesterLaden;
 
 @Named("importMB")
@@ -19,13 +20,22 @@ public class ImportMB {
 	@Inject
 	ISemesterLaden semesterLadenFacade;
 	
+	@Inject
+	IExcelImportieren excelImportierenFacade;
+	
 	private SemesterTO semesterTO;
 	List<SemesterTO> geladeneSemester = new ArrayList<>();
 	
 	private File uploadedFile;
 	
-	ImportMB() {
-		//geladeneSemester = semesterLadenFacade.semesterLaden();
+//	ImportMB() {
+//		ladeSemester();
+//	}
+	
+	public List<SemesterTO> ladeSemester () {
+		this.geladeneSemester = semesterLadenFacade.semesterLaden();
+		return this.geladeneSemester;
+		
 	}
 	
 	@PostConstruct
@@ -34,6 +44,7 @@ public class ImportMB {
 	}
 	
 	public void upload() {
+		excelImportierenFacade.excelImportieren(uploadedFile);
 		this.initBean();
 	}
 	

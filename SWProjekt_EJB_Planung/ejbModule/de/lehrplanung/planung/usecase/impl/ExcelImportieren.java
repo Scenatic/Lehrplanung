@@ -27,12 +27,12 @@ public class ExcelImportieren implements IExcelImportieren {
 	VeranstaltungDAO veranstaltungDAO;
 	
 	@Override
-	public List<VeranstaltungTO> excelImportieren(){
+	public List<VeranstaltungTO> excelImportieren(File file){
 		
 		List<VeranstaltungTO> returnList = new ArrayList<VeranstaltungTO>();
 		
 		try {
-			File file = new File("C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt");
+			//File file = new File("C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt");
 			FileInputStream fis = new FileInputStream(file);
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 			XSSFSheet sheet = wb.getSheetAt(0);
