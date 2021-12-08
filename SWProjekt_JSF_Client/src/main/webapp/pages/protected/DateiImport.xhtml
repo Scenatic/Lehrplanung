@@ -22,17 +22,25 @@
   		<input type = "submit" value="Upload" name="upload" id="upload" />
 		</form>
  -->    
- 
-		<h:selectOneMenu id="list" value="#{importMB.semester}">
-			<f:selectItems value="#{importMB.geladeneSemester}"/>
-		</h:selectOneMenu> 		
+ 		<h:form>
+ 			<p>Semester auswaehlen:</p>
+			<h:selectOneMenu id="list" value="#{importMB.semesterTO}">
+				<f:selectItems value="#{importMB.geladeneSemester}"/>
+			</h:selectOneMenu>
+		</h:form>
+		<br /> 		
  
  		<h:form enctype="multipart/form-data">
  			<h:inputFile value="#{importMB.uploadedFile}">
 <!-- 				<f:ajax listener="#{importMB.upload}" />  -->
  			</h:inputFile>
  		</h:form>
-		    
+ 		<br />
+ 		
+		<h:form>
+			<h:commandButton value="Upload" action="#{importMB.upload()}" style=" width: 200px" />
+			<h:commandButton value="Abbruch" action="#{importMB.dateiImportAbbrechenClicked()}" style=" width: 200px" />
+		</h:form> 
     	
     	
     </h:body>
