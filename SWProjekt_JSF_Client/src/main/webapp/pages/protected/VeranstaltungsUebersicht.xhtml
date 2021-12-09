@@ -20,19 +20,17 @@
 			</h:commandButton>
  --> 				
 		<h:commandButton value="Exportieren" action="#{exportMB.exportStartenClicked()}" style=" width: 200px" />
+		<h:commandButton value="Abbruch" action="#{veranstaltungMB.eingabeAbbrechenClicked()}" style=" width: 200px" />
 		
-		 <h:form>
  			<p>Semester auswaehlen:</p>
-			<h:selectOneMenu id="list" value="#{veranstaltungMB.semesterTO}">
+			<h:selectOneMenu id="list" value="#{veranstaltungMB.semesterTOString}">
 				<f:selectItems value="#{veranstaltungMB.ladeSemester()}"/>
-				<f:ajax listener="#{veranstaltungMB.starteVeranstaltungenUebersichtLaden()}" />
-			</h:selectOneMenu>
-		</h:form>
-		<br /> 	
+			</h:selectOneMenu> 	
+			<h:commandButton value="Anzeigen" action="#{veranstaltungMB.starteVeranstaltungenUebersichtLaden()}" style=" width: 200px" />
 		
 		<h:dataTable 
  				value="#{veranstaltungMB.veranstaltungen}" 
-	 			var="termin"
+	 			var="veranstaltung"
 	 			styleClass="table" 
 	 			headerClass="tableColumnsHeader"
 	 			rowClasses="tableFirstLine,tableNextLine">

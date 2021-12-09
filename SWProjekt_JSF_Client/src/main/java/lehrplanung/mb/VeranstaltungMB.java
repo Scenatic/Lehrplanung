@@ -11,6 +11,7 @@ import javax.inject.Named;
 import de.lehrplanung.planung.entity.SemesterTO;
 import de.lehrplanung.planung.entity.VeranstaltungTO;
 import de.lehrplanung.planung.usecase.ISemesterLaden;
+import de.lehrplanung.planung.usecase.IVeranstaltungenLaden;
 
 @Named("veranstaltungMB")
 @RequestScoped
@@ -24,6 +25,10 @@ public class VeranstaltungMB implements Serializable{
 	@Inject
 	ISemesterLaden semesterLadenFacade;
 	
+	@Inject
+	IVeranstaltungenLaden veranstaltungenLadenFacade;
+	
+	private String semesterTOString;
 	private SemesterTO semesterTO;
 	List<String> geladeneSemester = new ArrayList<>();
 	
@@ -36,8 +41,8 @@ public class VeranstaltungMB implements Serializable{
 	}
 	
 	public List<VeranstaltungTO> starteVeranstaltungenUebersichtLaden() {
-		
-		return null;
+		semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+		return veranstaltungenLadenFacade.veranstaltungenLaden(semesterTO.getSemesterId());
 		
 	}
 	
@@ -75,5 +80,21 @@ public class VeranstaltungMB implements Serializable{
 
 	public void setSemesterTO(SemesterTO semesterTO) {
 		this.semesterTO = semesterTO;
+	}
+
+	public List<VeranstaltungTO> getVeranstaltungen() {
+		return veranstaltungen;
+	}
+
+	public void setVeranstaltungen(List<VeranstaltungTO> veranstaltungen) {
+		this.veranstaltungen = veranstaltungen;
+	}
+
+	public String getSemesterTOString() {
+		return semesterTOString;
+	}
+
+	public void setSemesterTOString(String semesterTOString) {
+		this.semesterTOString = semesterTOString;
 	}
 }

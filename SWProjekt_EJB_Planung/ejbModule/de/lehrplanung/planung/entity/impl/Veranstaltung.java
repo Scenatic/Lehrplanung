@@ -13,6 +13,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,6 +24,8 @@ import de.lehrplanung.planung.entity.VeranstaltungTO;
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
 @Table(name="SWProjekt_Veranstaltung")
+@NamedQuery(name="Veranstaltung.ladeVeranstaltungen", 
+query="SELECT v from Veranstaltung v where v.semester = :semesterId")
 public class Veranstaltung implements Serializable{
 
 	/**
@@ -30,6 +33,8 @@ public class Veranstaltung implements Serializable{
 	 */
 	private static final long serialVersionUID = -6576656289768134367L;
 
+	public static final String FIND_VERANSTALTUNGEN = "Veranstaltung.ladeVeranstaltungen";
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SWPROJEKT_VERANSTALTUNG_NR")
 	@SequenceGenerator(name="SWPROJEKT_VERANSTALTUNG_NR", sequenceName="SWPROJEKT_SEQ_VERANSTALTUNG_NR", allocationSize = 1)	

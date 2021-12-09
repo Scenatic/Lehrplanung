@@ -48,7 +48,7 @@ public class ExcelExportieren implements IExcelExportieren {
 			rowhead.createCell(15).setCellValue("LVAngelegt");
 			rowhead.createCell(16).setCellValue("Modulanmeldung");
 			
-			List<Veranstaltung> aList = veranstaltungDAO.veranstaltungenLaden();
+			List<Veranstaltung> aList = veranstaltungDAO.veranstaltungenLaden(0);
 			int i = 0;
 			for(Veranstaltung aVeranstaltung : aList) {
 				int j = 0;

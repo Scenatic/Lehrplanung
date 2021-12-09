@@ -9,6 +9,6 @@ import de.lehrplanung.planung.entity.VeranstaltungTO;
 @Local
 public interface IVeranstaltungenLaden {
 
-	public List<VeranstaltungTO> veranstaltungenLaden();
+	public List<VeranstaltungTO> veranstaltungenLaden(int semesterId);
 	
 }
