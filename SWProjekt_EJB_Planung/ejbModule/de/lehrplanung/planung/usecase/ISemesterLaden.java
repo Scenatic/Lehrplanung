@@ -9,6 +9,6 @@ import de.lehrplanung.planung.entity.SemesterTO;
 @Local
 public interface ISemesterLaden {
 
-	public List<SemesterTO> semesterLaden();
+	public List<String> semesterLaden();
 	
 }

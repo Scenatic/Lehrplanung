@@ -24,9 +24,9 @@ public class ImportMB {
 	IExcelImportieren excelImportierenFacade;
 	
 	private SemesterTO semesterTO;
-	List<SemesterTO> geladeneSemester = new ArrayList<>();
+	List<String> geladeneSemester = new ArrayList<>();
 	
-	private File uploadedFile;
+	File uploadedFile;
 	
 //	ImportMB() {
 //		ladeSemester();
@@ -34,18 +34,18 @@ public class ImportMB {
 	
 	public List<String> ladeSemester () {
 		geladeneSemester = semesterLadenFacade.semesterLaden();
-		List<String> returnList = new ArrayList<String>();
-		for(SemesterTO aSemesterTO: geladeneSemester) {
-			if (aSemesterTO.isSommersemester()) {
-				String returnString = "SoSe " + aSemesterTO.getJahr();
-				returnList.add(returnString);
-			} else {
-				int jahrEnde = Integer.valueOf(aSemesterTO.getJahr()) + 1;
-				String returnString = "WiSe " + aSemesterTO.getJahr() + "/" + jahrEnde;
-				returnList.add(returnString);
-			}
-		}
-		return returnList;
+//		List<String> returnList = new ArrayList<String>();
+//		for(SemesterTO aSemesterTO: geladeneSemester) {
+//			if (aSemesterTO.isSommersemester()) {
+//				String returnString = "SoSe " + aSemesterTO.getJahr();
+//				returnList.add(returnString);
+//			} else {
+//				int jahrEnde = Integer.valueOf(aSemesterTO.getJahr()) + 1;
+//				String returnString = "WiSe " + aSemesterTO.getJahr() + "/" + jahrEnde;
+//				returnList.add(returnString);
+//			}
+//		}
+		return geladeneSemester;
 	}
 	
 	@PostConstruct

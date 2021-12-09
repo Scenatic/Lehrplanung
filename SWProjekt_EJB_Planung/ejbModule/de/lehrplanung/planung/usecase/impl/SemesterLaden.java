@@ -18,11 +18,22 @@ public class SemesterLaden implements ISemesterLaden{
 	SemesterDAO semesterDAO;
 	
 	@Override
-	public List<SemesterTO> semesterLaden() {
+	public List<String> semesterLaden() {
 		
 		List<Semester> aList = semesterDAO.findAll();
-		List<SemesterTO> returnList = new ArrayList<SemesterTO>();
-		for (Semester aSemester : aList) returnList.add(aSemester.toSemesterTO());
+		List<SemesterTO> semesterTOList = new ArrayList<SemesterTO>();
+		for (Semester aSemester : aList) semesterTOList.add(aSemester.toSemesterTO());
+		List<String> returnList = new ArrayList<String>();
+		for(SemesterTO aSemesterTO: semesterTOList) {
+			if (aSemesterTO.isSommersemester()) {
+				String returnString = "SoSe " + aSemesterTO.getJahr();
+				returnList.add(returnString);
+			} else {
+				int jahrEnde = Integer.valueOf(aSemesterTO.getJahr()) + 1;
+				String returnString = "WiSe " + aSemesterTO.getJahr() + "/" + jahrEnde;
+				returnList.add(returnString);
+			}
+		}
 		return returnList;
 	}
 	

@@ -13,13 +13,21 @@
     
     <h:body>
 		<h:form id = "veranstaltungenUebersichtAnzeigenForm">
-			<h:inputHidden value="#{veranstaltung.veranstaltungsId}" />
+<!--		<h:inputHidden value="#{veranstaltung.veranstaltungsId}" />
 				
 			<h:commandButton action="#{veranstaltungMB.starteVeranstaltungBearbeiten()}" value="Bearbeiten">
 				<f:setPropertyActionListener target="#{veranstaltungMB.veranstaltungTO}" value="#{veranstaltung}"/>
 			</h:commandButton>
-				
+ --> 				
 		<h:commandButton value="Exportieren" action="#{exportMB.exportStartenClicked()}" style=" width: 200px" />
+		
+		 <h:form>
+ 			<p>Semester auswaehlen:</p>
+			<h:selectOneMenu id="list" value="#{veranstaltungMB.semesterTO}">
+				<f:selectItems value="#{veranstaltungMB.ladeSemester()}"/>
+			</h:selectOneMenu>
+		</h:form>
+		<br /> 	
 		
 		<h:dataTable 
  				value="#{veranstaltungMB.starteVeranstaltungenUebersichtLaden() }" 
