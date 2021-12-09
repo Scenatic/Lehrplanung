@@ -32,10 +32,20 @@ public class ImportMB {
 //		ladeSemester();
 //	}
 	
-	public List<SemesterTO> ladeSemester () {
-		this.geladeneSemester = semesterLadenFacade.semesterLaden();
-		return this.geladeneSemester;
-		
+	public List<String> ladeSemester () {
+		geladeneSemester = semesterLadenFacade.semesterLaden();
+		List<String> returnList = new ArrayList<String>();
+		for(SemesterTO aSemesterTO: geladeneSemester) {
+			if (aSemesterTO.isSommersemester()) {
+				String returnString = "SoSe " + aSemesterTO.getJahr();
+				returnList.add(returnString);
+			} else {
+				int jahrEnde = Integer.valueOf(aSemesterTO.getJahr()) + 1;
+				String returnString = "WiSe " + aSemesterTO.getJahr() + "/" + jahrEnde;
+				returnList.add(returnString);
+			}
+		}
+		return returnList;
 	}
 	
 	@PostConstruct
