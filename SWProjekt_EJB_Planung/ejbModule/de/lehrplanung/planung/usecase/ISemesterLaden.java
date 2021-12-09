@@ -10,5 +10,7 @@ import de.lehrplanung.planung.entity.SemesterTO;
 public interface ISemesterLaden {
 
 	public List<String> semesterLaden();
+
+	SemesterTO semesterFinden(String SemesterTOString);
 	
 }

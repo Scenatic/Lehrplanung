@@ -26,15 +26,24 @@ public class SemesterLaden implements ISemesterLaden{
 		List<String> returnList = new ArrayList<String>();
 		for(SemesterTO aSemesterTO: semesterTOList) {
 			if (aSemesterTO.isSommersemester()) {
-				String returnString = "SoSe " + aSemesterTO.getJahr();
+				String returnString = aSemesterTO.getSemesterId() +":   SoSe " + aSemesterTO.getJahr();
 				returnList.add(returnString);
 			} else {
 				int jahrEnde = Integer.valueOf(aSemesterTO.getJahr()) + 1;
-				String returnString = "WiSe " + aSemesterTO.getJahr() + "/" + jahrEnde;
+				String returnString = aSemesterTO.getSemesterId() +":   WiSe " + aSemesterTO.getJahr() + "/" + jahrEnde;
 				returnList.add(returnString);
 			}
 		}
 		return returnList;
+	}
+	
+	@Override
+	public SemesterTO semesterFinden(String semesterTOString) {
+		String[] semesterTOArray = semesterTOString.split(":");
+		int semesterId = Integer.valueOf(semesterTOArray[0]);
+		SemesterTO aSemesterTO = semesterDAO.find(semesterId).toSemesterTO();
+		return aSemesterTO;
+		
 	}
 	
 }

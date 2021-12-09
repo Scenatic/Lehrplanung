@@ -23,6 +23,7 @@ public class ImportMB {
 	@Inject
 	IExcelImportieren excelImportierenFacade;
 	
+	private String semesterTOString;
 	private SemesterTO semesterTO;
 	List<String> geladeneSemester = new ArrayList<>();
 	
@@ -54,6 +55,7 @@ public class ImportMB {
 	}
 	
 	public void upload() {
+		semesterTO = semesterLadenFacade.semesterFinden(semesterTOString);
 		System.out.println("test");
 		excelImportierenFacade.excelImportieren(this.uploadedFile);
 		this.initBean();
@@ -72,11 +74,11 @@ public class ImportMB {
 		this.uploadedFile = uploadedFile;
 	}
 
-	public List<SemesterTO> getGeladeneSemester() {
+	public List<String> getGeladeneSemester() {
 		return geladeneSemester;
 	}
 
-	public void setGeladeneSemester(List<SemesterTO> geladeneSemester) {
+	public void setGeladeneSemester(List<String> geladeneSemester) {
 		this.geladeneSemester = geladeneSemester;
 	}
 
@@ -86,6 +88,14 @@ public class ImportMB {
 
 	public void setSemesterTO(SemesterTO semesterTO) {
 		this.semesterTO = semesterTO;
+	}
+
+	public String getSemesterTOString() {
+		return semesterTOString;
+	}
+
+	public void setSemesterTOString(String semesterTOString) {
+		this.semesterTOString = semesterTOString;
 	}
 	
 }
