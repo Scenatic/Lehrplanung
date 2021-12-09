@@ -45,7 +45,7 @@ public class ImportMB {
 	
 	public void upload() {
 		System.out.println("test");
-		excelImportierenFacade.excelImportieren(uploadedFile);
+		excelImportierenFacade.excelImportieren(this.uploadedFile);
 		this.initBean();
 	}
 	

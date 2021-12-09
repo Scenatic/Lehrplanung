@@ -4,19 +4,20 @@ import de.lehrplanung.planung.entity.impl.Veranstaltung;
 
 public class VeranstaltungTO {
 
-	int modulNr;
+	String modulNr;
 	String modulName;
-	int kursNr;
+	String kursNr;
 	String kursName;
 	String sprache;
 	String studiengruppe;
 	String dozent;
 	boolean lehrbeauftragter;
-	int anzahlLetztesSemester;
+	String anzahlLetztesSemester;
 	String bemerkung;
 	String pruefungsform;
 	double sws;
 	String turnus;
+	String pflichtmodul;
 	String vertiefung;
 	boolean modulAngelegt;
 	boolean lvAngelegt;
@@ -24,9 +25,9 @@ public class VeranstaltungTO {
 	
 	SemesterTO semesterTO;
 
-	public VeranstaltungTO(int modulNr, String modulName, int kursNr, String kursName, String sprache,
-			String studiengruppe, String dozent, boolean lehrbeauftragter, int anzahlLetztesSemester, String bemerkung,
-			String pruefungsform, double sws, String turnus, String vertiefung, boolean modulAngelegt,
+	public VeranstaltungTO(String modulNr, String modulName, String kursNr, String kursName, String sprache,
+			String studiengruppe, String dozent, boolean lehrbeauftragter, String anzahlLetztesSemester, String bemerkung,
+			String pruefungsform, double sws, String turnus, String pflichtmodul, String vertiefung, boolean modulAngelegt,
 			boolean lvAngelegt, boolean modulanmeldung) {
 		super();
 		this.modulNr = modulNr;
@@ -42,6 +43,7 @@ public class VeranstaltungTO {
 		this.pruefungsform = pruefungsform;
 		this.sws = sws;
 		this.turnus = turnus;
+		this.pflichtmodul = pflichtmodul;
 		this.vertiefung = vertiefung;
 		this.modulAngelegt = modulAngelegt;
 		this.lvAngelegt = lvAngelegt;
@@ -50,14 +52,32 @@ public class VeranstaltungTO {
 
 	public Veranstaltung toVeranstaltung() {
 		Veranstaltung aVeranstaltung = new Veranstaltung();
+		aVeranstaltung.setModulNr(this.modulNr);
+		aVeranstaltung.setModulName(this.modulName);
+		aVeranstaltung.setKursNr(this.kursNr);
+		aVeranstaltung.setKursName(this.kursName);
+		aVeranstaltung.setSprache(this.sprache);
+		aVeranstaltung.setStudiengruppe(this.studiengruppe);
+		aVeranstaltung.setDozent(this.dozent);
+		aVeranstaltung.setLehrbeauftragter(this.lehrbeauftragter);
+		aVeranstaltung.setAnzahlLetztesSemester(this.anzahlLetztesSemester);
+		aVeranstaltung.setBemerkung(this.bemerkung);
+		aVeranstaltung.setPruefungsform(this.pruefungsform);
+		aVeranstaltung.setSws(this.sws);
+		aVeranstaltung.setTurnus(this.turnus);
+		aVeranstaltung.setPflichtmodul(this.pflichtmodul);
+		aVeranstaltung.setVertiefung(this.vertiefung);
+		aVeranstaltung.setModulAngelegt(this.modulAngelegt);
+		aVeranstaltung.setLvAngelegt(this.lvAngelegt);
+		aVeranstaltung.setModulanmeldung(this.modulanmeldung);
 		return aVeranstaltung;
 	}
 	
-	public int getModulNr() {
+	public String getModulNr() {
 		return modulNr;
 	}
 
-	public void setModulNr(int modulNr) {
+	public void setModulNr(String modulNr) {
 		this.modulNr = modulNr;
 	}
 
@@ -69,11 +89,11 @@ public class VeranstaltungTO {
 		this.modulName = modulName;
 	}
 
-	public int getKursNr() {
+	public String getKursNr() {
 		return kursNr;
 	}
 
-	public void setKursNr(int kursNr) {
+	public void setKursNr(String kursNr) {
 		this.kursNr = kursNr;
 	}
 
@@ -117,11 +137,11 @@ public class VeranstaltungTO {
 		this.lehrbeauftragter = lehrbeauftragter;
 	}
 
-	public int getAnzahlLetztesSemester() {
+	public String getAnzahlLetztesSemester() {
 		return anzahlLetztesSemester;
 	}
 
-	public void setAnzahlLetztesSemester(int anzahlLetztesSemester) {
+	public void setAnzahlLetztesSemester(String anzahlLetztesSemester) {
 		this.anzahlLetztesSemester = anzahlLetztesSemester;
 	}
 

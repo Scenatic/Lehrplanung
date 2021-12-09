@@ -32,19 +32,20 @@ public class Veranstaltung implements Serializable{
 	@SequenceGenerator(name="SWPROJEKT_VERANSTALTUNG_NR", sequenceName="SWPROJEKT_SEQ_VERANSTALTUNG_NR", allocationSize = 1)	
 	private int veranstaltungsId;
 	
-	private int modulNr;
+	private String modulNr;
 	private String modulName;
-	private int kursNr;
+	private String kursNr;
 	private String kursName;
 	private String sprache;
 	private String studiengruppe;
 	private String dozent;
 	private boolean lehrbeauftragter;
-	private int anzahlLetztesSemester;
+	private String anzahlLetztesSemester;
 	private String bemerkung;
 	private String pruefungsform;
 	private double sws;
 	private String turnus;
+	private String pflichtmodul;
 	private String vertiefung;
 	private boolean modulAngelegt;
 	private boolean lvAngelegt;
@@ -54,11 +55,11 @@ public class Veranstaltung implements Serializable{
 	@JoinColumn(name="semesterId")
 	private Semester semester;
 
-	public int getModulNr() {
+	public String getModulNr() {
 		return modulNr;
 	}
 
-	public void setModulNr(int modulNr) {
+	public void setModulNr(String modulNr) {
 		this.modulNr = modulNr;
 	}
 
@@ -70,11 +71,11 @@ public class Veranstaltung implements Serializable{
 		this.modulName = modulName;
 	}
 
-	public int getKursNr() {
+	public String getKursNr() {
 		return kursNr;
 	}
 
-	public void setKursNr(int kursNr) {
+	public void setKursNr(String kursNr) {
 		this.kursNr = kursNr;
 	}
 
@@ -118,11 +119,11 @@ public class Veranstaltung implements Serializable{
 		this.lehrbeauftragter = lehrbeauftragter;
 	}
 
-	public int getAnzahlLetztesSemester() {
+	public String getAnzahlLetztesSemester() {
 		return anzahlLetztesSemester;
 	}
 
-	public void setAnzahlLetztesSemester(int anzahlLetztesSemester) {
+	public void setAnzahlLetztesSemester(String anzahlLetztesSemester) {
 		this.anzahlLetztesSemester = anzahlLetztesSemester;
 	}
 
@@ -156,6 +157,14 @@ public class Veranstaltung implements Serializable{
 
 	public void setTurnus(String turnus) {
 		this.turnus = turnus;
+	}
+
+	public String getPflichtmodul() {
+		return pflichtmodul;
+	}
+
+	public void setPflichtmodul(String pflichtmodul) {
+		this.pflichtmodul = pflichtmodul;
 	}
 
 	public String getVertiefung() {

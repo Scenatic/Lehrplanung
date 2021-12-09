@@ -11,6 +11,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -33,68 +35,91 @@ public class ExcelImportieren implements IExcelImportieren {
 		
 		try {
 			file = new File("C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt\\QuantitativeMethoden_SS2021.xlsx");
+			DataFormatter formatter = new DataFormatter();
 			FileInputStream fis = new FileInputStream(file);
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 			XSSFSheet sheet = wb.getSheetAt(0);
 			Iterator<Row> itr = sheet.iterator();
+			//Row row = sheet.getRow(2);
+			Row row = itr.next();
 			while(itr.hasNext()) {
-				Row row = itr.next();
+				row = itr.next();
 				Cell cell;
 				int i = 0;
 				cell = row.getCell(i);
-				int modulNr = Integer.valueOf(cell.getStringCellValue());
+				String modulNr = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				String modulName = cell.getStringCellValue();
+				String modulName = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				int kursNr = Integer.valueOf(cell.getStringCellValue());
+				String kursNr = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				String kursName = cell.getStringCellValue();
+				String kursName = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				String sprache = cell.getStringCellValue();
+				String sprache = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				String studiengruppe = cell.getStringCellValue();
+				String studiengruppe = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				String dozent = cell.getStringCellValue();
+				String dozent = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				boolean lehrbeauftragter = cell.getBooleanCellValue();
+				boolean lehrbeauftragter = true;
+				if (cell == null || cell.getCellTypeEnum() == CellType.BLANK) {
+					lehrbeauftragter = false;
+				}
 				i = i+1;
 				cell = row.getCell(i);
-				int anzahlLetztesSemester = Integer.valueOf(cell.getStringCellValue());
+				String anzahlLetztesSemester = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				String bemerkung = cell.getStringCellValue();
+				String bemerkung = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				String pruefungsform = cell.getStringCellValue();
+				String pruefungsform = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				double sws = cell.getNumericCellValue();
+				double sws = 0;
+				if (cell == null || cell.getCellTypeEnum() == CellType.BLANK) {
+					sws = 0;
+				} else {
+					sws = cell.getNumericCellValue();
+				}
 				i = i+1;
 				cell = row.getCell(i);
-				String turnus = cell.getStringCellValue();
+				String turnus = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				String vertiefung = cell.getStringCellValue();
+				String pflichtmodul = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				boolean modulAngelegt = cell.getBooleanCellValue();
+				String vertiefung = formatter.formatCellValue(cell);
 				i = i+1;
 				cell = row.getCell(i);
-				boolean lvAngelegt = cell.getBooleanCellValue();
+				boolean modulAngelegt = true;
+				if (cell == null || cell.getCellTypeEnum() == CellType.BLANK) {
+					modulAngelegt = false;
+				}
 				i = i+1;
 				cell = row.getCell(i);
-				boolean modulanmeldung = cell.getBooleanCellValue();
+				boolean lvAngelegt = true;
+				if (cell == null || cell.getCellTypeEnum() == CellType.BLANK) {
+					lvAngelegt = false;
+				}
+				i = i+1;
+				cell = row.getCell(i);
+				boolean modulanmeldung = true;
+				if (cell == null || cell.getCellTypeEnum() == CellType.BLANK) {
+					modulanmeldung = false;
+				}
 				VeranstaltungTO aVeranstaltung = new VeranstaltungTO(
 						modulNr, modulName, kursNr, kursName, sprache,
 						studiengruppe, dozent, lehrbeauftragter, anzahlLetztesSemester, bemerkung,
-						pruefungsform, sws, turnus, vertiefung, modulAngelegt,
+						pruefungsform, sws, turnus, pflichtmodul, vertiefung, modulAngelegt,
 						lvAngelegt, modulanmeldung);
 				veranstaltungDAO.save(aVeranstaltung.toVeranstaltung());
 				returnList.add(aVeranstaltung);
