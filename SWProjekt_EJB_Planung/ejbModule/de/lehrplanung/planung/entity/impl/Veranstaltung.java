@@ -16,8 +16,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import de.lehrplanung.planung.entity.SemesterTO;
+import de.lehrplanung.planung.entity.VeranstaltungTO;
+
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
 @Table(name="SWProjekt_Veranstaltung")
 public class Veranstaltung implements Serializable{
@@ -54,6 +57,34 @@ public class Veranstaltung implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="semesterId")
 	private Semester semester;
+
+	public Veranstaltung() {
+		
+	}
+	
+	public VeranstaltungTO toVeranstaltungTO(SemesterTO semesterTO) {
+		VeranstaltungTO aVeranstaltungTO = new VeranstaltungTO();
+		aVeranstaltungTO.setSemesterTO(semesterTO);
+		aVeranstaltungTO.setModulNr(this.modulNr);
+		aVeranstaltungTO.setModulName(this.modulName);
+		aVeranstaltungTO.setKursNr(this.kursNr);
+		aVeranstaltungTO.setKursName(this.kursName);
+		aVeranstaltungTO.setSprache(this.sprache);
+		aVeranstaltungTO.setStudiengruppe(this.studiengruppe);
+		aVeranstaltungTO.setDozent(this.dozent);
+		aVeranstaltungTO.setLehrbeauftragter(this.lehrbeauftragter);
+		aVeranstaltungTO.setAnzahlLetztesSemester(this.anzahlLetztesSemester);
+		aVeranstaltungTO.setBemerkung(this.bemerkung);
+		aVeranstaltungTO.setPruefungsform(this.pruefungsform);
+		aVeranstaltungTO.setSws(this.sws);
+		aVeranstaltungTO.setTurnus(this.turnus);
+		aVeranstaltungTO.setPflichtmodul(this.pflichtmodul);
+		aVeranstaltungTO.setVertiefung(this.vertiefung);
+		aVeranstaltungTO.setModulAngelegt(this.modulAngelegt);
+		aVeranstaltungTO.setLvAngelegt(this.lvAngelegt);
+		aVeranstaltungTO.setModulanmeldung(this.modulanmeldung);
+		return aVeranstaltungTO;
+	}
 
 	public String getModulNr() {
 		return modulNr;

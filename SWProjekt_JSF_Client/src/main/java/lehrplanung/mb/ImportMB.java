@@ -1,6 +1,7 @@
 package lehrplanung.mb;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,12 @@ import de.lehrplanung.planung.usecase.ISemesterLaden;
 
 @Named("importMB")
 @RequestScoped
-public class ImportMB {
+public class ImportMB implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8373043828369027903L;
 
 	@Inject
 	ISemesterLaden semesterLadenFacade;
@@ -24,7 +30,7 @@ public class ImportMB {
 	IExcelImportieren excelImportierenFacade;
 	
 	private String semesterTOString;
-	private SemesterTO semesterTO;
+	SemesterTO semesterTO;
 	List<String> geladeneSemester = new ArrayList<>();
 	
 	File uploadedFile;
@@ -55,9 +61,10 @@ public class ImportMB {
 	}
 	
 	public void upload() {
-		semesterTO = semesterLadenFacade.semesterFinden(semesterTOString);
+		System.out.println(this.semesterTOString);
+		semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
 		System.out.println("test");
-		excelImportierenFacade.excelImportieren(this.uploadedFile);
+		excelImportierenFacade.excelImportieren(this.uploadedFile, semesterTO);
 		this.initBean();
 	}
 	

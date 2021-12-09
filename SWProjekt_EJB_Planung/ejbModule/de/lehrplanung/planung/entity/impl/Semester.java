@@ -1,6 +1,7 @@
 package de.lehrplanung.planung.entity.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -18,9 +19,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import de.lehrplanung.planung.entity.SemesterTO;
+import de.lehrplanung.planung.entity.VeranstaltungTO;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
 @Table(name="SWProjekt_Semester")
 public class Semester implements Serializable {
@@ -44,12 +46,26 @@ public class Semester implements Serializable {
 	
 	public SemesterTO toSemesterTO() {
 		SemesterTO semesterTO = new SemesterTO(
-				this.getJahr(),
-				this.isSommersemester());
+//				this.getSemesterId(),
+//				this.getJahr(),
+//				this.isSommersemester()
+				);
+		semesterTO.setSemesterId(this.semesterId);
+		semesterTO.setJahr(this.jahr);
+		semesterTO.setSommersemester(this.sommersemester);
+		semesterTO.setVeranstaltungen(new ArrayList<VeranstaltungTO>());
+		for (Veranstaltung eineVeranstaltung:this.getVeranstaltungen())
+			semesterTO.getVeranstaltungen().add(eineVeranstaltung.toVeranstaltungTO(semesterTO));
 		return semesterTO;
 	}
 	
 	public Semester() {
+	}
+	
+	public Semester(SemesterTO semesterTO) {
+		this.jahr = semesterTO.getJahr();
+		this.sommersemester = semesterTO.isSommersemester();
+		veranstaltungen = new ArrayList<Veranstaltung>();
 	}
 	
 	public String getJahr() {
@@ -79,6 +95,11 @@ public class Semester implements Serializable {
 
 	public void setVeranstaltungen(List<Veranstaltung> veranstaltungen) {
 		this.veranstaltungen = veranstaltungen;
+	}
+
+	public void addVeranstaltungen(Veranstaltung aVeranstaltung) {
+		this.veranstaltungen.add(aVeranstaltung);
+		
 	}
 	
 	

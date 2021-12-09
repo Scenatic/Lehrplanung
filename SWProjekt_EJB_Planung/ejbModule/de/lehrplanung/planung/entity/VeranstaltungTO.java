@@ -1,5 +1,6 @@
 package de.lehrplanung.planung.entity;
 
+import de.lehrplanung.planung.entity.impl.Semester;
 import de.lehrplanung.planung.entity.impl.Veranstaltung;
 
 public class VeranstaltungTO {
@@ -25,11 +26,16 @@ public class VeranstaltungTO {
 	
 	SemesterTO semesterTO;
 
-	public VeranstaltungTO(String modulNr, String modulName, String kursNr, String kursName, String sprache,
+	public VeranstaltungTO() {
+		
+	};
+	
+	public VeranstaltungTO(SemesterTO semesterTO, String modulNr, String modulName, String kursNr, String kursName, String sprache,
 			String studiengruppe, String dozent, boolean lehrbeauftragter, String anzahlLetztesSemester, String bemerkung,
 			String pruefungsform, double sws, String turnus, String pflichtmodul, String vertiefung, boolean modulAngelegt,
 			boolean lvAngelegt, boolean modulanmeldung) {
 		super();
+		this.semesterTO = semesterTO;
 		this.modulNr = modulNr;
 		this.modulName = modulName;
 		this.kursNr = kursNr;
@@ -50,8 +56,9 @@ public class VeranstaltungTO {
 		this.modulanmeldung = modulanmeldung;
 	}
 
-	public Veranstaltung toVeranstaltung() {
+	public Veranstaltung toVeranstaltung(Semester semester) {
 		Veranstaltung aVeranstaltung = new Veranstaltung();
+		aVeranstaltung.setSemester(semester);
 		aVeranstaltung.setModulNr(this.modulNr);
 		aVeranstaltung.setModulName(this.modulName);
 		aVeranstaltung.setKursNr(this.kursNr);
@@ -175,6 +182,14 @@ public class VeranstaltungTO {
 
 	public void setTurnus(String turnus) {
 		this.turnus = turnus;
+	}
+
+	public String getPflichtmodul() {
+		return pflichtmodul;
+	}
+
+	public void setPflichtmodul(String pflichtmodul) {
+		this.pflichtmodul = pflichtmodul;
 	}
 
 	public String getVertiefung() {

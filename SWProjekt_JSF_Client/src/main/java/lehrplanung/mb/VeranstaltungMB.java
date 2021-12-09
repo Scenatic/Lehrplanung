@@ -28,10 +28,17 @@ public class VeranstaltungMB implements Serializable{
 	List<String> geladeneSemester = new ArrayList<>();
 	
 	private VeranstaltungTO veranstaltungTO;
+	List<VeranstaltungTO> veranstaltungen = new ArrayList<>();
 	
 	public List<String> ladeSemester () {
 		geladeneSemester = semesterLadenFacade.semesterLaden();
 		return geladeneSemester;
+	}
+	
+	public List<VeranstaltungTO> starteVeranstaltungenUebersichtLaden() {
+		
+		return null;
+		
 	}
 	
 	public String eingabeSpeichernClicked() {

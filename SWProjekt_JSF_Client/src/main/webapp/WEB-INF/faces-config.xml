@@ -10,6 +10,11 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>importMB</managed-bean-name>
+		<managed-bean-class>lehrplanung.mb.ImportMB</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>exportMB</managed-bean-name>
 		<managed-bean-class>lehrplanung.mb.ExportMB</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>

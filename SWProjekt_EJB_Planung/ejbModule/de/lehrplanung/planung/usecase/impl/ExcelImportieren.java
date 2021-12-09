@@ -17,9 +17,12 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import de.lehrplanung.planung.dao.SemesterDAO;
 import de.lehrplanung.planung.dao.VeranstaltungDAO;
 import de.lehrplanung.planung.entity.SemesterTO;
 import de.lehrplanung.planung.entity.VeranstaltungTO;
+import de.lehrplanung.planung.entity.impl.Semester;
+import de.lehrplanung.planung.entity.impl.Veranstaltung;
 import de.lehrplanung.planung.usecase.IExcelImportieren;
 
 @Stateless
@@ -28,8 +31,11 @@ public class ExcelImportieren implements IExcelImportieren {
 	@Inject
 	VeranstaltungDAO veranstaltungDAO;
 	
+	@Inject
+	SemesterDAO semesterDAO;
+	
 	@Override
-	public List<VeranstaltungTO> excelImportieren(File file){
+	public List<VeranstaltungTO> excelImportieren(File file, SemesterTO semesterTO){
 		
 		List<VeranstaltungTO> returnList = new ArrayList<VeranstaltungTO>();
 		
@@ -116,19 +122,34 @@ public class ExcelImportieren implements IExcelImportieren {
 				if (cell == null || cell.getCellTypeEnum() == CellType.BLANK) {
 					modulanmeldung = false;
 				}
-				VeranstaltungTO aVeranstaltung = new VeranstaltungTO(
+				VeranstaltungTO aVeranstaltungTO = new VeranstaltungTO(semesterTO,
 						modulNr, modulName, kursNr, kursName, sprache,
 						studiengruppe, dozent, lehrbeauftragter, anzahlLetztesSemester, bemerkung,
 						pruefungsform, sws, turnus, pflichtmodul, vertiefung, modulAngelegt,
 						lvAngelegt, modulanmeldung);
-				veranstaltungDAO.save(aVeranstaltung.toVeranstaltung());
-				returnList.add(aVeranstaltung);
+				Semester aSemester = semesterDAO.find(semesterTO.getSemesterId());
+				Veranstaltung aVeranstaltung = aVeranstaltungTO.toVeranstaltung(aSemester);
+				//System.out.println(aVeranstaltung.getModulName());
+				//System.out.println(aSemester.getJahr());
+				aSemester.addVeranstaltungen(aVeranstaltung);
+				//.add(aVeranstaltung);
+				//semesterDAO.save(aSemester);
+				semesterDAO.update(aSemester);
+				veranstaltungDAO.save(aVeranstaltungTO.toVeranstaltung(aSemester));
+				returnList.add(aVeranstaltungTO);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+//		Semester aSemester = semesterTO.toSemester(semesterTO);
+//		semesterDAO.update(aSemester);
+//		for (int k = 0; k<returnList.size(); k++) {
+//			VeranstaltungTO aVeranstaltungTO = returnList.get(k);
+//			veranstaltungDAO.save(aVeranstaltungTO.toVeranstaltung(aSemester));
+//		}
+//		semesterDAO.save(aSemester);
 		
 		return returnList;
 	}

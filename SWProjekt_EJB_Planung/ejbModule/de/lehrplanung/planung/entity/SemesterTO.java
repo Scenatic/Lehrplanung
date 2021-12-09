@@ -1,9 +1,12 @@
 package de.lehrplanung.planung.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import de.lehrplanung.planung.entity.impl.Semester;
+import de.lehrplanung.planung.entity.impl.Veranstaltung;
 
 public class SemesterTO implements Serializable{
 
@@ -15,23 +18,25 @@ public class SemesterTO implements Serializable{
 	private int semesterId;
 	private String jahr;
 	private boolean sommersemester;
-	private Collection<VeranstaltungTO> veranstaltungen;
+	private List<VeranstaltungTO> veranstaltungen;
 	
 	public SemesterTO() {
 	}
 	
-	public SemesterTO(String jahr, boolean sommersemester) {
+	public SemesterTO(int semesterId, String jahr, boolean sommersemester) {
+		this.semesterId = semesterId;
 		this.jahr = jahr;
 		this.sommersemester = sommersemester;
 	}
 	
-	public Semester toSemester() {
+	public Semester toSemester(SemesterTO semesterTO) {
 		
-		Semester semester = new Semester();
+		Semester semester = new Semester(semesterTO);
 		semester.setJahr(this.jahr);
 		semester.setSommersemester(this.sommersemester);
-//		for (VeranstaltungTO veranstaltungenTO:this.veranstaltungen)
-//			semester.getVeranstaltungen();
+		//veranstaltungen = new ArrayList<VeranstaltungTO>();
+		for (VeranstaltungTO veranstaltungenTO:this.veranstaltungen)
+			semester.getVeranstaltungen().add(veranstaltungenTO.toVeranstaltung(semester));
 		
 		return semester;
 	}
@@ -60,11 +65,11 @@ public class SemesterTO implements Serializable{
 		this.sommersemester = sommersemester;
 	}
 
-	public Collection<VeranstaltungTO> getVeranstaltungen() {
+	public List<VeranstaltungTO> getVeranstaltungen() {
 		return veranstaltungen;
 	}
 
-	public void setVeranstaltungen(Collection<VeranstaltungTO> veranstaltungen) {
+	public void setVeranstaltungen(List<VeranstaltungTO> veranstaltungen) {
 		this.veranstaltungen = veranstaltungen;
 	}
 }

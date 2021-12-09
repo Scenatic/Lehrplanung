@@ -27,6 +27,7 @@
 			<h:selectOneMenu id="list" value="#{importMB.semesterTOString}">
 				<f:selectItems value="#{importMB.ladeSemester()}"/>
 			</h:selectOneMenu>
+			<h:commandButton value="Upload" action="#{importMB.upload()}" style=" width: 200px" />
 		</h:form>
 		<br /> 		
  
@@ -37,8 +38,8 @@
  		</h:form>
  		<br />
  		
-		<h:form>
-			<h:commandButton value="Upload" action="#{importMB.upload()}" style=" width: 200px" />
+ 		<h:form>
+			<h:commandButton value="Upload" action="#{importMB.upload()}" style=" width: 200px" />	
 			<h:commandButton value="Abbruch" action="#{importMB.dateiImportAbbrechenClicked()}" style=" width: 200px" />
 		</h:form> 
     	

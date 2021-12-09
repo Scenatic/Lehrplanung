@@ -25,12 +25,13 @@
  			<p>Semester auswaehlen:</p>
 			<h:selectOneMenu id="list" value="#{veranstaltungMB.semesterTO}">
 				<f:selectItems value="#{veranstaltungMB.ladeSemester()}"/>
+				<f:ajax listener="#{veranstaltungMB.starteVeranstaltungenUebersichtLaden()}" />
 			</h:selectOneMenu>
 		</h:form>
 		<br /> 	
 		
 		<h:dataTable 
- 				value="#{veranstaltungMB.starteVeranstaltungenUebersichtLaden() }" 
+ 				value="#{veranstaltungMB.veranstaltungen}" 
 	 			var="termin"
 	 			styleClass="table" 
 	 			headerClass="tableColumnsHeader"
