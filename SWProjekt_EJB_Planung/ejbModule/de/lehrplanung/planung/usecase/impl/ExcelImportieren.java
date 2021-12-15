@@ -135,7 +135,7 @@ public class ExcelImportieren implements IExcelImportieren {
 				//.add(aVeranstaltung);
 				//semesterDAO.save(aSemester);
 				semesterDAO.update(aSemester);
-				veranstaltungDAO.save(aVeranstaltungTO.toVeranstaltung(aSemester));
+				//veranstaltungDAO.save(aVeranstaltungTO.toVeranstaltung(aSemester));
 				returnList.add(aVeranstaltungTO);
 			}
 		} catch (Exception e) {

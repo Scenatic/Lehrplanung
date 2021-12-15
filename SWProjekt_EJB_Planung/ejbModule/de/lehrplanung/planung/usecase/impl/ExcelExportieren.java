@@ -12,6 +12,8 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import java.util.List;
 
 import de.lehrplanung.planung.dao.VeranstaltungDAO;
+import de.lehrplanung.planung.entity.SemesterTO;
+import de.lehrplanung.planung.entity.VeranstaltungTO;
 import de.lehrplanung.planung.entity.impl.Semester;
 import de.lehrplanung.planung.entity.impl.Veranstaltung;
 import de.lehrplanung.planung.usecase.IExcelExportieren;
@@ -23,10 +25,10 @@ public class ExcelExportieren implements IExcelExportieren {
 	VeranstaltungDAO veranstaltungDAO;
 	
 	@Override
-	public void excelExportieren(int semesterId) {
+	public void excelExportieren(SemesterTO semesterTO) {
 		
 		try {
-			String filename = "C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt\\Export.xlsx";
+			String filename = "C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt\\Export.xls";
 			HSSFWorkbook workbook = new HSSFWorkbook();
 			HSSFSheet sheet = workbook.createSheet("Tabelle 1");
 			
@@ -44,15 +46,17 @@ public class ExcelExportieren implements IExcelExportieren {
 			rowhead.createCell(10).setCellValue("Pruefungsform");
 			rowhead.createCell(11).setCellValue("SWS");
 			rowhead.createCell(12).setCellValue("Turnus");
-			rowhead.createCell(13).setCellValue("Vertiefung");
-			rowhead.createCell(14).setCellValue("ModulAngelegt");
-			rowhead.createCell(15).setCellValue("LVAngelegt");
-			rowhead.createCell(16).setCellValue("Modulanmeldung");
+			rowhead.createCell(13).setCellValue("Pflichtmodule");
+			rowhead.createCell(14).setCellValue("Vertiefung");
+			rowhead.createCell(15).setCellValue("ModulAngelegt");
+			rowhead.createCell(16).setCellValue("LVAngelegt");
+			rowhead.createCell(17).setCellValue("Modulanmeldung");
 			
-			Semester a = new Semester();
-			List<Veranstaltung> aList = veranstaltungDAO.veranstaltungenLaden(a);
+//			Semester a = new Semester();
+//			List<Veranstaltung> aList = veranstaltungDAO.veranstaltungenLaden(a);
+			List<VeranstaltungTO> aList = semesterTO.getVeranstaltungen();
 			int i = 0;
-			for(Veranstaltung aVeranstaltung : aList) {
+			for(VeranstaltungTO aVeranstaltung : aList) {
 				int j = 0;
 				i = i + 1;
 				HSSFRow row = sheet.createRow((short)i);

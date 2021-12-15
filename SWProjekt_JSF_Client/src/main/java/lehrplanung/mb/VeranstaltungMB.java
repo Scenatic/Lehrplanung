@@ -56,8 +56,8 @@ public class VeranstaltungMB implements Serializable{
 	}
 	
 	public void download() {
-		semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
-		excelExportierenFacade.excelExportieren(semesterTO.getSemesterId());
+		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+		excelExportierenFacade.excelExportieren(this.semesterTO);
 	}
 	
 	public String eingabeSpeichernClicked() {
