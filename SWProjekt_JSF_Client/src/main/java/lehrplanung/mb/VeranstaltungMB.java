@@ -39,6 +39,8 @@ public class VeranstaltungMB implements Serializable{
 	private VeranstaltungTO veranstaltungTO;
 	List<VeranstaltungTO> veranstaltungen = new ArrayList<>();
 	
+	private String link;
+	
 	public List<String> ladeSemester () {
 		geladeneSemester = semesterLadenFacade.semesterLaden();
 		return geladeneSemester;
@@ -51,6 +53,11 @@ public class VeranstaltungMB implements Serializable{
 //		
 //	}
 
+	public void linkErstellen() {
+		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+		setLink("http://localhost:8080/SWProjekt_JSF_Client/pages/public/VeranstaltungsEingabe.xhtml?semester="+this.semesterTO.getSemesterId());
+	}
+	
 	public void starteVeranstaltungenUebersichtLaden() {
 		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
 	}
@@ -110,5 +117,13 @@ public class VeranstaltungMB implements Serializable{
 
 	public void setSemesterTOString(String semesterTOString) {
 		this.semesterTOString = semesterTOString;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 }

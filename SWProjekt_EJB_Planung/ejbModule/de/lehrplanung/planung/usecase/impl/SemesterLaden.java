@@ -39,7 +39,6 @@ public class SemesterLaden implements ISemesterLaden{
 	
 	@Override
 	public SemesterTO semesterFinden(String semesterTOString) {
-		System.out.println(semesterTOString +"---");
 		String[] semesterTOArray = semesterTOString.split(":");
 		int semesterId = Integer.valueOf(semesterTOArray[0]);
 		SemesterTO aSemesterTO = semesterDAO.find(semesterId).toSemesterTO();

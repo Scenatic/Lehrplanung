@@ -12,7 +12,18 @@
     </h:head>
     
     <h:body>
-	
+		<h:form>
+			<p>Semester auswaehlen:</p>
+				<h:selectOneMenu id="list" value="#{veranstaltungMB.semesterTOString}">
+					<f:selectItems value="#{veranstaltungMB.ladeSemester()}"/>
+				</h:selectOneMenu> 	
+				<h:commandButton value="Link erstellen" action="#{veranstaltungMB.linkErstellen()}" style=" width: 200px" />
+<!--			<h:link value="#{veranstaltungMB.link}" outcome="http://localhost:8080/SWProjekt_JSF_Client/pages/public/VeranstaltungsEingabe.xhtml?id=#{veranstaltungMB.semesterTOString}">
+				<f:param name="semester" value="1" />
+			</h:link>  -->
+			<h:outputLink>#{veranstaltungMB.link}</h:outputLink>	
+		<!--  href="http://localhost:8080/SWProjekt_JSF_Client/pages/public/VeranstaltungsEingabe.xhtml?id=#{veranstaltungMB.semesterTOString}" -->
+		</h:form>
 	</h:body>
 
 </html>
