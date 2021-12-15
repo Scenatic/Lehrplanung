@@ -12,6 +12,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import java.util.List;
 
 import de.lehrplanung.planung.dao.VeranstaltungDAO;
+import de.lehrplanung.planung.entity.impl.Semester;
 import de.lehrplanung.planung.entity.impl.Veranstaltung;
 import de.lehrplanung.planung.usecase.IExcelExportieren;
 
@@ -22,7 +23,7 @@ public class ExcelExportieren implements IExcelExportieren {
 	VeranstaltungDAO veranstaltungDAO;
 	
 	@Override
-	public void excelExportieren() {
+	public void excelExportieren(int semesterId) {
 		
 		try {
 			String filename = "C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt\\Export.xlsx";
@@ -48,7 +49,8 @@ public class ExcelExportieren implements IExcelExportieren {
 			rowhead.createCell(15).setCellValue("LVAngelegt");
 			rowhead.createCell(16).setCellValue("Modulanmeldung");
 			
-			List<Veranstaltung> aList = veranstaltungDAO.veranstaltungenLaden(0);
+			Semester a = new Semester();
+			List<Veranstaltung> aList = veranstaltungDAO.veranstaltungenLaden(a);
 			int i = 0;
 			for(Veranstaltung aVeranstaltung : aList) {
 				int j = 0;

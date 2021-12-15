@@ -5,6 +5,6 @@ import javax.ejb.Local;
 @Local
 public interface IExcelExportieren {
 
-	public void excelExportieren();
+	public void excelExportieren(int i);
 	
 }

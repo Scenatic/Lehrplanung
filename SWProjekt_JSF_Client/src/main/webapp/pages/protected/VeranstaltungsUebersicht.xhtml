@@ -19,7 +19,7 @@
 				<f:setPropertyActionListener target="#{veranstaltungMB.veranstaltungTO}" value="#{veranstaltung}"/>
 			</h:commandButton>
  --> 				
-		<h:commandButton value="Exportieren" action="#{exportMB.exportStartenClicked()}" style=" width: 200px" />
+		<h:commandButton value="Exportieren" action="#{veranstaltungMB.download()}" style=" width: 200px" />
 		<h:commandButton value="Abbruch" action="#{veranstaltungMB.eingabeAbbrechenClicked()}" style=" width: 200px" />
 		
  			<p>Semester auswaehlen:</p>
@@ -29,7 +29,7 @@
 			<h:commandButton value="Anzeigen" action="#{veranstaltungMB.starteVeranstaltungenUebersichtLaden()}" style=" width: 200px" />
 		
 		<h:dataTable 
- 				value="#{veranstaltungMB.veranstaltungen}" 
+ 				value="#{veranstaltungMB.semesterTO.veranstaltungen}" 
 	 			var="veranstaltung"
 	 			styleClass="table" 
 	 			headerClass="tableColumnsHeader"
@@ -85,6 +85,10 @@
 	 		<h:column>
 	 			<f:facet name="header">Turnus</f:facet>
 	 			#{veranstaltung.turnus}
+	 		</h:column>
+	 		<h:column>
+	 			<f:facet name="header">Pflichtmodule</f:facet>
+	 			#{veranstaltung.pflichtmodul}
 	 		</h:column>
 	 		<h:column>
 	 			<f:facet name="header">Vertiefung</f:facet>

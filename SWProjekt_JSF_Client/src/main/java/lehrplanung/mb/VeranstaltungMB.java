@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import de.lehrplanung.planung.entity.SemesterTO;
 import de.lehrplanung.planung.entity.VeranstaltungTO;
+import de.lehrplanung.planung.usecase.IExcelExportieren;
 import de.lehrplanung.planung.usecase.ISemesterLaden;
 import de.lehrplanung.planung.usecase.IVeranstaltungenLaden;
 
@@ -28,6 +29,9 @@ public class VeranstaltungMB implements Serializable{
 	@Inject
 	IVeranstaltungenLaden veranstaltungenLadenFacade;
 	
+	@Inject
+	IExcelExportieren excelExportierenFacade;
+	
 	private String semesterTOString;
 	private SemesterTO semesterTO;
 	List<String> geladeneSemester = new ArrayList<>();
@@ -40,10 +44,20 @@ public class VeranstaltungMB implements Serializable{
 		return geladeneSemester;
 	}
 	
-	public List<VeranstaltungTO> starteVeranstaltungenUebersichtLaden() {
+//	public List<VeranstaltungTO> starteVeranstaltungenUebersichtLaden() {
+//		semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+//		System.out.println(semesterTO.getSemesterId());
+//		return veranstaltungenLadenFacade.veranstaltungenLaden(semesterTO.getSemesterId());
+//		
+//	}
+
+	public void starteVeranstaltungenUebersichtLaden() {
+		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+	}
+	
+	public void download() {
 		semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
-		return veranstaltungenLadenFacade.veranstaltungenLaden(semesterTO.getSemesterId());
-		
+		excelExportierenFacade.excelExportieren(semesterTO.getSemesterId());
 	}
 	
 	public String eingabeSpeichernClicked() {
