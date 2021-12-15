@@ -12,5 +12,7 @@ public interface ISemesterLaden {
 	public List<String> semesterLaden();
 
 	SemesterTO semesterFinden(String SemesterTOString);
+
+	public SemesterTO semesterFindenById(int urlId);
 	
 }

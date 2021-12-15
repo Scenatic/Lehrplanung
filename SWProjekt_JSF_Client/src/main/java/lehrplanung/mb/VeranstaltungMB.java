@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.annotation.ManagedProperty;
+//import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -31,6 +33,9 @@ public class VeranstaltungMB implements Serializable{
 	
 	@Inject
 	IExcelExportieren excelExportierenFacade;
+	
+	@ManagedProperty(value="#{param.semester}")
+	private int urlId;
 	
 	private String semesterTOString;
 	private SemesterTO semesterTO;
@@ -60,6 +65,13 @@ public class VeranstaltungMB implements Serializable{
 	
 	public void starteVeranstaltungenUebersichtLaden() {
 		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+	}
+	
+	public List<VeranstaltungTO> starteVeranstaltungenEingabeLaden() {
+		System.out.println(this.urlId);
+		//urlId = 91;
+		this.semesterTO = semesterLadenFacade.semesterFindenById(this.urlId);
+		return this.semesterTO.getVeranstaltungen();
 	}
 	
 	public void download() {
@@ -125,5 +137,13 @@ public class VeranstaltungMB implements Serializable{
 
 	public void setLink(String link) {
 		this.link = link;
+	}
+
+	public int getUrlId() {
+		return urlId;
+	}
+
+	public void setUrlId(int urlId) {
+		this.urlId = urlId;
 	}
 }

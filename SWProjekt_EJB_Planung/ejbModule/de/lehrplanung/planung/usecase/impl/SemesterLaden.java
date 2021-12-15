@@ -45,5 +45,11 @@ public class SemesterLaden implements ISemesterLaden{
 		return aSemesterTO;
 		
 	}
+
+	@Override
+	public SemesterTO semesterFindenById(int urlId) {
+		SemesterTO aSemesterTO = semesterDAO.find(urlId).toSemesterTO();
+		return aSemesterTO;
+	}
 	
 }
