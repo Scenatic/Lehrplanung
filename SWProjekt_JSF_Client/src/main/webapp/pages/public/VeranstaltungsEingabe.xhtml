@@ -50,7 +50,7 @@
 	 		</h:column>
 	 		<h:column>
 	 			<f:facet name="header">Dozent</f:facet>
-	 			#{veranstaltung.dozent}
+	 			<h:inputText value="#{veranstaltungMB.veranstaltungTO.dozent}" />
 	 		</h:column>
 	 		<h:column>
 	 			<f:facet name="header">Lehrbeauftragter</f:facet>
@@ -62,7 +62,7 @@
 	 		</h:column>
 	 		<h:column>
 	 			<f:facet name="header">Bemerkung</f:facet>
-	 			#{veranstaltung.bemerkung}
+	 			<h:inputText value="#{veranstaltungMB.veranstaltungTO.bemerkung}" />
 	 		</h:column>
 	 		<h:column>
 	 			<f:facet name="header">Pruefungsform</f:facet>
