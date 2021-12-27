@@ -28,19 +28,25 @@
 				<f:selectItems value="#{importMB.ladeSemester()}"/>
 			</h:selectOneMenu>
 			
+			<br/>
+			<br/>
+			<br/>
+			
 			<h:inputFile id="file-id"
 					     value="#{importMB.uploadedFile}"
 	    	   		     required="true"   
                          requiredMessage="Please upload a file"
                          alt="upload file">
             </h:inputFile>
+            
+            <br/>
+            <br/>
 			
 			<h:commandButton value="Upload" action="#{importMB.upload()}" style=" width: 200px" />
 		</h:form>
 		<br /> 		
  
- 		<h:form>
-			<h:commandButton value="Upload" action="#{importMB.upload()}" style=" width: 200px" />	
+ 		<h:form>	
 			<h:commandButton value="Abbruch" action="#{importMB.dateiImportAbbrechenClicked()}" style=" width: 200px" />
 		</h:form> 
     	

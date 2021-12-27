@@ -1,8 +1,11 @@
 package de.lehrplanung.planung.usecase.impl;
 
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 import javax.ejb.Stateless;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -28,7 +31,9 @@ public class ExcelExportieren implements IExcelExportieren {
 	public void excelExportieren(SemesterTO semesterTO) {
 		
 		try {
-			String filename = "C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt\\Export.xls";
+			String filename = "export.xls";
+			String contentType = "application/vnd.ms-excel";
+			//filename = "C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt\\Export.xls";
 			HSSFWorkbook workbook = new HSSFWorkbook();
 			HSSFSheet sheet = workbook.createSheet("Tabelle 1");
 			
@@ -96,10 +101,17 @@ public class ExcelExportieren implements IExcelExportieren {
 			}
 	
 			
-			FileOutputStream fileOut = new FileOutputStream(filename);  
+			//FileOutputStream fileOut = new FileOutputStream(filename);
+			FacesContext fc = FacesContext.getCurrentInstance();
+			ExternalContext ec = fc.getExternalContext();
+			ec.responseReset();
+			ec.setResponseContentType(contentType);
+			ec.setResponseHeader("Content-Disposition", "attachment; filename=\""+filename+"\"");
+			OutputStream fileOut = ec.getResponseOutputStream();
 			workbook.write(fileOut);
 			fileOut.close();
 			workbook.close();
+			fc.responseComplete();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
