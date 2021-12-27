@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.ejb.Local;
+import javax.servlet.http.Part;
 
 import de.lehrplanung.planung.entity.SemesterTO;
 import de.lehrplanung.planung.entity.VeranstaltungTO;
@@ -13,6 +14,7 @@ public interface IExcelImportieren {
 
 	//public List<VeranstaltungTO> excelImportieren(File file);
 
-	List<VeranstaltungTO> excelImportieren(File file, SemesterTO semesterTO);
+	List<VeranstaltungTO> excelImportieren(Part file, SemesterTO semesterTO);
+
 	
 }

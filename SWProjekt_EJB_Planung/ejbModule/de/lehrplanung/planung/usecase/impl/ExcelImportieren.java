@@ -3,12 +3,14 @@ package de.lehrplanung.planung.usecase.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.servlet.http.Part;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -35,14 +37,15 @@ public class ExcelImportieren implements IExcelImportieren {
 	SemesterDAO semesterDAO;
 	
 	@Override
-	public List<VeranstaltungTO> excelImportieren(File file, SemesterTO semesterTO){
+	public List<VeranstaltungTO> excelImportieren(Part file, SemesterTO semesterTO){
 		
 		List<VeranstaltungTO> returnList = new ArrayList<VeranstaltungTO>();
 		
 		try {
-			file = new File("C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt\\QuantitativeMethoden_SS2021.xlsx");
+			//file = new File("C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt\\QuantitativeMethoden_SS2021.xlsx");
 			DataFormatter formatter = new DataFormatter();
-			FileInputStream fis = new FileInputStream(file);
+			//FileInputStream fis = new FileInputStream(file);
+			InputStream fis = file.getInputStream();
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 			XSSFSheet sheet = wb.getSheetAt(0);
 			Iterator<Row> itr = sheet.iterator();

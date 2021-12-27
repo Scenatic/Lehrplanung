@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 
 import de.lehrplanung.planung.entity.SemesterTO;
 import de.lehrplanung.planung.usecase.IExcelImportieren;
@@ -33,7 +34,8 @@ public class ImportMB implements Serializable{
 	SemesterTO semesterTO;
 	List<String> geladeneSemester = new ArrayList<>();
 	
-	File uploadedFile;
+	//File uploadedFile;
+	Part uploadedFile;
 	
 //	ImportMB() {
 //		ladeSemester();
@@ -73,11 +75,11 @@ public class ImportMB implements Serializable{
 		
 	}
 
-	public File getUploadedFile() {
+	public Part getUploadedFile() {
 		return uploadedFile;
 	}
 
-	public void setUploadedFile(File uploadedFile) {
+	public void setUploadedFile(Part uploadedFile) {
 		this.uploadedFile = uploadedFile;
 	}
 
