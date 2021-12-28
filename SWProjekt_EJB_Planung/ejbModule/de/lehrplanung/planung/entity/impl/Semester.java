@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import de.lehrplanung.mitglieder.entity.impl.Fachgruppe;
 import de.lehrplanung.planung.entity.SemesterTO;
 import de.lehrplanung.planung.entity.VeranstaltungTO;
 
@@ -44,6 +45,8 @@ public class Semester implements Serializable {
 	@JoinColumn(name="semesterId")
 	private List<Veranstaltung> veranstaltungen;
 	
+	private Fachgruppe fachgruppe;
+	
 	public SemesterTO toSemesterTO() {
 		SemesterTO semesterTO = new SemesterTO(
 //				this.getSemesterId(),
@@ -56,6 +59,7 @@ public class Semester implements Serializable {
 		semesterTO.setVeranstaltungen(new ArrayList<VeranstaltungTO>());
 		for (Veranstaltung eineVeranstaltung:this.getVeranstaltungen())
 			semesterTO.getVeranstaltungen().add(eineVeranstaltung.toVeranstaltungTO(semesterTO));
+		semesterTO.setFachgruppeTO(fachgruppe.toFachgruppeTO());
 		return semesterTO;
 	}
 	
@@ -66,6 +70,7 @@ public class Semester implements Serializable {
 		this.jahr = semesterTO.getJahr();
 		this.sommersemester = semesterTO.isSommersemester();
 		veranstaltungen = new ArrayList<Veranstaltung>();
+		this.fachgruppe = semesterTO.getFachgruppeTO().toFachgruppe();
 	}
 	
 	public String getJahr() {
@@ -100,6 +105,14 @@ public class Semester implements Serializable {
 	public void addVeranstaltungen(Veranstaltung aVeranstaltung) {
 		this.veranstaltungen.add(aVeranstaltung);
 		
+	}
+
+	public Fachgruppe getFachgruppe() {
+		return fachgruppe;
+	}
+
+	public void setFachgruppe(Fachgruppe fachgruppe) {
+		this.fachgruppe = fachgruppe;
 	}
 	
 	

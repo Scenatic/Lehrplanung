@@ -2,6 +2,7 @@ package de.lehrplanung.mitglieder.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 import de.lehrplanung.mitglieder.entity.impl.FGMitglied;
 import de.lehrplanung.mitglieder.entity.impl.Fachgruppe;
@@ -15,7 +16,7 @@ public class FachgruppeTO implements Serializable {
 	
 	int fgId;
 	String fgName;
-	private Collection<FGMitgliedTO> fgMitglieder;
+	private List<FGMitgliedTO> fgMitglieder;
 	
 	public FachgruppeTO(int fgId, String fgName) {
 		super();
@@ -49,11 +50,11 @@ public class FachgruppeTO implements Serializable {
 		this.fgName = fgName;
 	}
 
-	public Collection<FGMitgliedTO> getFgMitglieder() {
+	public List<FGMitgliedTO> getFgMitglieder() {
 		return fgMitglieder;
 	}
 
-	public void setFgMitglieder(Collection<FGMitgliedTO> fgMitglieder) {
+	public void setFgMitglieder(List<FGMitgliedTO> fgMitglieder) {
 		this.fgMitglieder = fgMitglieder;
 	}
 	

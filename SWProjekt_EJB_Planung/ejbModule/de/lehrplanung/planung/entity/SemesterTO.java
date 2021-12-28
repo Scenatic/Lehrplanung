@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import de.lehrplanung.mitglieder.entity.FachgruppeTO;
 import de.lehrplanung.planung.entity.impl.Semester;
 import de.lehrplanung.planung.entity.impl.Veranstaltung;
 
@@ -19,14 +20,16 @@ public class SemesterTO implements Serializable{
 	private String jahr;
 	private boolean sommersemester;
 	private List<VeranstaltungTO> veranstaltungen;
+	private FachgruppeTO fachgruppeTO;
 	
 	public SemesterTO() {
 	}
 	
-	public SemesterTO(int semesterId, String jahr, boolean sommersemester) {
+	public SemesterTO(int semesterId, String jahr, boolean sommersemester, FachgruppeTO fachgruppeTO) {
 		this.semesterId = semesterId;
 		this.jahr = jahr;
 		this.sommersemester = sommersemester;
+		this.fachgruppeTO = fachgruppeTO;
 	}
 	
 	public Semester toSemester(SemesterTO semesterTO) {
@@ -37,7 +40,7 @@ public class SemesterTO implements Serializable{
 		//veranstaltungen = new ArrayList<VeranstaltungTO>();
 		for (VeranstaltungTO veranstaltungenTO:this.veranstaltungen)
 			semester.getVeranstaltungen().add(veranstaltungenTO.toVeranstaltung(semester));
-		
+		semester.setFachgruppe(fachgruppeTO.toFachgruppe());
 		return semester;
 	}
 
@@ -71,5 +74,13 @@ public class SemesterTO implements Serializable{
 
 	public void setVeranstaltungen(List<VeranstaltungTO> veranstaltungen) {
 		this.veranstaltungen = veranstaltungen;
+	}
+
+	public FachgruppeTO getFachgruppeTO() {
+		return fachgruppeTO;
+	}
+
+	public void setFachgruppeTO(FachgruppeTO fachgruppeTO) {
+		this.fachgruppeTO = fachgruppeTO;
 	}
 }

@@ -1,6 +1,7 @@
 package de.lehrplanung.link.usecase.impl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.ejb.Stateless;
@@ -13,6 +14,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import de.lehrplanung.link.usecase.ILinkVersenden;
+import de.lehrplanung.mitglieder.entity.FGMitgliedTO;
+import de.lehrplanung.mitglieder.entity.FachgruppeTO;
+import de.lehrplanung.mitglieder.entity.impl.FGMitglied;
 import de.lehrplanung.planung.entity.SemesterTO;
 
 
@@ -40,10 +44,19 @@ public class LinkVersenden implements ILinkVersenden {
 		};
 		Session session = Session.getInstance(props, auth);
 		
+		final String toEmail = "niklas.flaspoehler@hs-osnabrueck.de"; // can be any email id
+		
 		//FG von semester abfragen
-		final String toEmail = "niklas.flaspoehler@hs-osnabrueck.de"; // can be any email id 
+		FachgruppeTO fachgruppeTO = semesterTO.getFachgruppeTO();
 		
 		//FGMitglieder laden
+		List<FGMitgliedTO> fgMitgliederTO = fachgruppeTO.getFgMitglieder();
+		
+		//FGMitglieder EMails als zusammenhaengender String
+		String eMailListe = "";
+		for(FGMitgliedTO fgMitgliedTO : fgMitgliederTO) {
+			eMailListe = eMailListe +","+fgMitgliedTO.geteMail();
+		}
 		
 		//Link erstellen
 		final String link = "http://localhost:8080/SWProjekt_JSF_Client/pages/public/VeranstaltungsEingabe.xhtml?semester="+semesterTO.getSemesterId();
@@ -75,7 +88,7 @@ public class LinkVersenden implements ILinkVersenden {
 
 	      msg.setSentDate(new Date());
 
-	      msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+	      msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(eMailListe, false));
 	      System.out.println("Message is ready");
     	  Transport.send(msg);  
 

@@ -9,6 +9,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import de.lehrplanung.mitglieder.entity.FachgruppeTO;
+import de.lehrplanung.mitglieder.usecase.IFachgruppeLaden;
 import de.lehrplanung.planung.entity.SemesterTO;
 import de.lehrplanung.planung.usecase.ISemesterAnlegen;
 
@@ -24,9 +26,14 @@ public class SemesterMB implements Serializable{
 	@Inject
 	ISemesterAnlegen semesterAnlegenFacade;	
 	
+	@Inject
+	IFachgruppeLaden fachgruppeLadenFacade;
+	
 	private SemesterTO semesterTO;
 	
 	List<Integer> jahre = new ArrayList<>();
+	List<String> geladeneFachgruppen = new ArrayList<>();
+	String fachgruppeString;
 	
 	SemesterMB(){
 		addJahre();
@@ -46,7 +53,16 @@ public class SemesterMB implements Serializable{
 		this.semesterTO = new SemesterTO();
 	}
 	
+	//Fachgruppen fuer ListAuswahl laden
+	public List<String>	ladeFachgruppen(){
+		geladeneFachgruppen = fachgruppeLadenFacade.fachgruppeLaden();
+		return geladeneFachgruppen;
+		
+	}
+	
 	public String semesterSpeichernClicked() {
+		FachgruppeTO fachgruppeTO = fachgruppeLadenFacade.fachgruppeFinden(fachgruppeString);
+		this.semesterTO.setFachgruppeTO(fachgruppeTO);
 		semesterAnlegenFacade.semesterAnlegen(this.semesterTO);
 		this.initBean();
 		return "BACK_TO_HAUPTMENUE";
@@ -72,6 +88,22 @@ public class SemesterMB implements Serializable{
 
 	public void setJahre(List<Integer> jahre) {
 		this.jahre = jahre;
+	}
+
+	public List<String> getGeladeneFachgruppen() {
+		return geladeneFachgruppen;
+	}
+
+	public void setGeladeneFachgruppen(List<String> geladeneFachgruppen) {
+		this.geladeneFachgruppen = geladeneFachgruppen;
+	}
+
+	public String getFachgruppeString() {
+		return fachgruppeString;
+	}
+
+	public void setFachgruppeString(String fachgruppeString) {
+		this.fachgruppeString = fachgruppeString;
 	}
 	
 }

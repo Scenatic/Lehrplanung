@@ -18,5 +18,6 @@
 			<attribute name="owner.project.facets" value="jst.ejb"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/SWProjekt_EJB_Mitglieder"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

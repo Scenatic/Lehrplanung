@@ -14,34 +14,19 @@
 	<h:body>
 		<h:form id="semesterAnlegenForm">	
 		<p>Semester anlegen:</p>
-
-<!--			<input type="radio" id="sose" name="Semesterart" value="Sommersemester" />
-				<label for="sose">SoSe</label>
-				<input type="radio" id="wise" name="Semesterart" value="Wintersemester" />
-				<label for="sose">WiSe</label>
-				<br />
-				<br />
-				<label>Jahr:</label>
-				<select name="jahr" >
-				<option>test1</option>
-				<option>test2</option>
-				</select>	
- -->
 				
 				<h:selectOneRadio value="#{semesterMB.semesterTO.sommersemester}">
 						<f:selectItem itemValue="TRUE" itemLabel="SoSe"/>
 						<f:selectItem itemValue="FALSE" itemLabel="WiSe"/>
 				</h:selectOneRadio>
-				
+				<br />
 				<h:selectOneMenu id="list" value="#{semesterMB.semesterTO.jahr}">
 					<f:selectItems value="#{semesterMB.jahre}"/>
 				</h:selectOneMenu>
-							
-<!--				<h:outputLabel value="Jahr" />
-				<h:inputText value="#{semesterMB.semesterTO.jahr}" />
-				<h:outputLabel value="Sommersemester" />
-				<h:inputText value="#{semesterMB.semesterTO.sommersemester}"></h:inputText>
--->
+				<br />
+				<h:selectOneMenu id="listFG" value="#{semesterMB.fachgruppeString}">
+					<f:selectItems value="#{semesterMB.ladeFachgruppen()}"/>
+				</h:selectOneMenu>			
 			<br />
 		
 			<h:commandButton value="Speichern" action="#{semesterMB.semesterSpeichernClicked()}" style=" width: 200px" />
