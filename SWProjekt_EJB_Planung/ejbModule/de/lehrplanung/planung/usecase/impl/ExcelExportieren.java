@@ -31,12 +31,18 @@ public class ExcelExportieren implements IExcelExportieren {
 	public void excelExportieren(SemesterTO semesterTO) {
 		
 		try {
+			
+			//Dateityp und Name festlegen
 			String filename = "export.xls";
 			String contentType = "application/vnd.ms-excel";
+			
 			//filename = "C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt\\Export.xls";
+			
+			//Excel Datei und Tabellenblatt erstellen
 			HSSFWorkbook workbook = new HSSFWorkbook();
 			HSSFSheet sheet = workbook.createSheet("Tabelle 1");
 			
+			//Spaltenueberschriften erstellen
 			HSSFRow rowhead = sheet.createRow((short)0);
 			rowhead.createCell(0).setCellValue("ModulNr");
 			rowhead.createCell(1).setCellValue("Modulname");
@@ -59,6 +65,8 @@ public class ExcelExportieren implements IExcelExportieren {
 			
 //			Semester a = new Semester();
 //			List<Veranstaltung> aList = veranstaltungDAO.veranstaltungenLaden(a);
+			
+			//Schleife um Daten aus DB in Excel Datei zu uebertragen
 			List<VeranstaltungTO> aList = semesterTO.getVeranstaltungen();
 			int i = 0;
 			for(VeranstaltungTO aVeranstaltung : aList) {
@@ -102,13 +110,20 @@ public class ExcelExportieren implements IExcelExportieren {
 	
 			
 			//FileOutputStream fileOut = new FileOutputStream(filename);
+			
+			//PopUp zur manuellen Angabe von Speicherort und Dateiname
 			FacesContext fc = FacesContext.getCurrentInstance();
 			ExternalContext ec = fc.getExternalContext();
 			ec.responseReset();
 			ec.setResponseContentType(contentType);
 			ec.setResponseHeader("Content-Disposition", "attachment; filename=\""+filename+"\"");
+			
+			//OutputStream mit den im PopUp angegeben Daten
 			OutputStream fileOut = ec.getResponseOutputStream();
+			
+			//Speichern der Datei
 			workbook.write(fileOut);
+			
 			fileOut.close();
 			workbook.close();
 			fc.responseComplete();

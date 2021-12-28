@@ -69,6 +69,7 @@ public class VeranstaltungMB implements Serializable{
 		veranstaltungenListe = starteVeranstaltungenEingabeLaden();
 	}
 	
+	//Veranstaltungen fuer FGMitglieder laden
 	@PostConstruct
 	public void init() {
 	    //veranstaltungTO = new VeranstaltungTO();
@@ -80,6 +81,7 @@ public class VeranstaltungMB implements Serializable{
 		}
 	}
 	
+	//angelegte Semester fuer List Auswahl laden
 	public List<String> ladeSemester () {
 		geladeneSemester = semesterLadenFacade.semesterLaden();
 		return geladeneSemester;
@@ -92,23 +94,31 @@ public class VeranstaltungMB implements Serializable{
 //		
 //	}
 
+	//Link in xhtml anzeigen
 	public void linkErstellen() {
 		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
 		setLink("http://localhost:8080/SWProjekt_JSF_Client/pages/public/VeranstaltungsEingabe.xhtml?semester="+this.semesterTO.getSemesterId());
 	}
 	
+	//EMail Versand mit Link zur Dateneingabe an FGMitglieder starten
 	public void mailVersenden() {
 		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
 		linkVersendenFacade.linkVersenden(this.semesterTO);
 		
 	}
 	
+	//Uebersicht fuer FGSprecher anzeigen
 	public void starteVeranstaltungenUebersichtLaden() {
 		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+		veranstaltungen = this.semesterTO.getVeranstaltungen();
 	}
 	
+	//Eingabetabelle fuer FGMitglieder anzeigen
+	//Wird in init() aufgerufen
 	public List<VeranstaltungTO> starteVeranstaltungenEingabeLaden() {
 		//urlId = getUrlId();
+		
+		//Parameter der SemesterId zuordnen
 		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		try {
 			urlId = Integer.valueOf(req.getParameter("semester"));
@@ -117,17 +127,23 @@ public class VeranstaltungMB implements Serializable{
 		}
 		System.out.println(urlId);
 		//urlId = 161;
+		
+		//Semester auf Basis des Parameters/derSemesterId laden
 		this.semesterTO = semesterLadenFacade.semesterFindenById(urlId);
+		
 		//setUrlId(this.urlId);
 		//this.veranstaltungenListe = this.semesterTO.getVeranstaltungen();
+		
 		return this.semesterTO.getVeranstaltungen();
 	}
 	
+	//Export der Daten aus DB in Excel starten
 	public void download() {
 		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
 		excelExportierenFacade.excelExportieren(this.semesterTO);
 	}
 	
+	//Von FGMitglied eingegebene Daten speichern
 	public void eingabeSpeichernClicked() {
 		//urlId = getUrlId();
 		System.out.println(this.urlId);
