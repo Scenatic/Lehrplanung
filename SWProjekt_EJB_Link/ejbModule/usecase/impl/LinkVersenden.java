@@ -1,9 +1,24 @@
 package usecase.impl;
 
+import java.util.Date;
+import java.util.Properties;
+
+import javax.ejb.Stateless;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import de.lehrplanung.planung.entity.SemesterTO;
+import usecase.ILinkVersenden;
 
-public class LinkVersenden {
+@Stateless
+public class LinkVersenden implements ILinkVersenden {
 
+	@Override
 	public void linkVersenden(SemesterTO semesterTO) {
 		
 		final String fromEmail = "lehrplanung.osnabrueck@gmail.com"; //requires valid gmail id

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="ejbModule"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SWProjekt_EJB_Planung"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/SWProjekt_EJB_Planung"/>
+	<classpathentry kind="lib" path="C:/Users/Niklas/Desktop/Studium/5. Semester/Softwareprojekt/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Niklas/Desktop/Studium/5. Semester/Softwareprojekt/javax.activation-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Niklas/Desktop/Studium/4. Semester/Verteilte Systeme/javaee-api-8.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
