@@ -34,26 +34,11 @@ public class ImportMB implements Serializable{
 	SemesterTO semesterTO;
 	List<String> geladeneSemester = new ArrayList<>();
 	
-	//File uploadedFile;
 	Part uploadedFile;
 	
-//	ImportMB() {
-//		ladeSemester();
-//	}
-	
+	//angelegte Semester fuer List Auswahl laden
 	public List<String> ladeSemester () {
 		geladeneSemester = semesterLadenFacade.semesterLaden();
-//		List<String> returnList = new ArrayList<String>();
-//		for(SemesterTO aSemesterTO: geladeneSemester) {
-//			if (aSemesterTO.isSommersemester()) {
-//				String returnString = "SoSe " + aSemesterTO.getJahr();
-//				returnList.add(returnString);
-//			} else {
-//				int jahrEnde = Integer.valueOf(aSemesterTO.getJahr()) + 1;
-//				String returnString = "WiSe " + aSemesterTO.getJahr() + "/" + jahrEnde;
-//				returnList.add(returnString);
-//			}
-//		}
 		return geladeneSemester;
 	}
 	
@@ -62,6 +47,7 @@ public class ImportMB implements Serializable{
 		this.semesterTO = new SemesterTO();
 	}
 	
+	//Speichern der Excel Daten in DB starten
 	public void upload() {
 		System.out.println(this.semesterTOString);
 		semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);

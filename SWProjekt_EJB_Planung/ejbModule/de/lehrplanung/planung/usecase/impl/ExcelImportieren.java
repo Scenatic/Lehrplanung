@@ -43,14 +43,24 @@ public class ExcelImportieren implements IExcelImportieren {
 		
 		try {
 			//file = new File("C:\\Users\\Niklas\\Desktop\\Studium\\5. Semester\\Softwareprojekt\\QuantitativeMethoden_SS2021.xlsx");
-			DataFormatter formatter = new DataFormatter();
 			//FileInputStream fis = new FileInputStream(file);
+			
+			//DataFormatter um die ExcelDatentypen den Java Datentypen anzupassen
+			DataFormatter formatter = new DataFormatter();
+			
+			//InputStream fuer die ExcelDatei
 			InputStream fis = file.getInputStream();
+			
+			//Excel Datei und Tabellenblatt waehlen
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 			XSSFSheet sheet = wb.getSheetAt(0);
+			
+			//Iterator fuer nachfolgende Schleife
 			Iterator<Row> itr = sheet.iterator();
 			//Row row = sheet.getRow(2);
 			Row row = itr.next();
+			
+			//Schleife um Zellenwerte den Variablen zuzuordnen
 			while(itr.hasNext()) {
 				row = itr.next();
 				Cell cell;
@@ -125,19 +135,32 @@ public class ExcelImportieren implements IExcelImportieren {
 				if (cell == null || cell.getCellTypeEnum() == CellType.BLANK) {
 					modulanmeldung = false;
 				}
+				
+				//VeranstaltungTO aus den Variablen erstellen
 				VeranstaltungTO aVeranstaltungTO = new VeranstaltungTO(semesterTO,
 						modulNr, modulName, kursNr, kursName, sprache,
 						studiengruppe, dozent, lehrbeauftragter, anzahlLetztesSemester, bemerkung,
 						pruefungsform, sws, turnus, pflichtmodul, vertiefung, modulAngelegt,
 						lvAngelegt, modulanmeldung);
+				
+				//angegebenes Semester laden
 				Semester aSemester = semesterDAO.find(semesterTO.getSemesterId());
+				
+				//Veranstaltung aus TO generieren
 				Veranstaltung aVeranstaltung = aVeranstaltungTO.toVeranstaltung(aSemester);
+				
 				//System.out.println(aVeranstaltung.getModulName());
 				//System.out.println(aSemester.getJahr());
+				
+				//Veranstaltung dem Semester hinzufuegen
 				aSemester.addVeranstaltungen(aVeranstaltung);
+				
 				//.add(aVeranstaltung);
 				//semesterDAO.save(aSemester);
+				
+				//Erstellte und dem Semester zugeordnete Veranstaltung in DB speichern
 				semesterDAO.update(aSemester);
+				
 				//veranstaltungDAO.save(aVeranstaltungTO.toVeranstaltung(aSemester));
 				returnList.add(aVeranstaltungTO);
 			}
@@ -146,13 +169,6 @@ public class ExcelImportieren implements IExcelImportieren {
 			e.printStackTrace();
 		}
 		
-//		Semester aSemester = semesterTO.toSemester(semesterTO);
-//		semesterDAO.update(aSemester);
-//		for (int k = 0; k<returnList.size(); k++) {
-//			VeranstaltungTO aVeranstaltungTO = returnList.get(k);
-//			veranstaltungDAO.save(aVeranstaltungTO.toVeranstaltung(aSemester));
-//		}
-//		semesterDAO.save(aSemester);
 		
 		return returnList;
 	}
