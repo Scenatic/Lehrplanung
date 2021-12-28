@@ -18,8 +18,12 @@
     
 	<h:body>
 		<h:form>
+			<h:commandButton value="Speichern" action="#{veranstaltungMB.eingabeSpeichernClicked}" style=" width: 200px">
+				<f:ajax execute="@form" render="@none" />
+			</h:commandButton>
+			<br/>
 			<h:dataTable 
- 				value="#{veranstaltungMB.starteVeranstaltungenEingabeLaden()}" 
+ 				value="#{veranstaltungMB.veranstaltungenListe}" 
 	 			var="veranstaltung"
 	 			styleClass="table" 
 	 			headerClass="tableColumnsHeader"
@@ -50,7 +54,7 @@
 	 		</h:column>
 	 		<h:column>
 	 			<f:facet name="header">Dozent</f:facet>
-	 			<h:inputText value="#{veranstaltungMB.veranstaltungTO.dozent}" />
+	 			<h:inputText value="#{veranstaltung.dozent}" />
 	 		</h:column>
 	 		<h:column>
 	 			<f:facet name="header">Lehrbeauftragter</f:facet>
@@ -62,7 +66,7 @@
 	 		</h:column>
 	 		<h:column>
 	 			<f:facet name="header">Bemerkung</f:facet>
-	 			<h:inputText value="#{veranstaltungMB.veranstaltungTO.bemerkung}" />
+	 			<h:inputText value="#{veranstaltung.bemerkung}" />
 	 		</h:column>
 	 		<h:column>
 	 			<f:facet name="header">Pruefungsform</f:facet>

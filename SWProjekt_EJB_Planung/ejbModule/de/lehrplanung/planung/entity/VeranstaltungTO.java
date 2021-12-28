@@ -5,6 +5,7 @@ import de.lehrplanung.planung.entity.impl.Veranstaltung;
 
 public class VeranstaltungTO {
 
+	int veranstaltungsId;
 	String modulNr;
 	String modulName;
 	String kursNr;
@@ -59,6 +60,7 @@ public class VeranstaltungTO {
 	public Veranstaltung toVeranstaltung(Semester semester) {
 		Veranstaltung aVeranstaltung = new Veranstaltung();
 		aVeranstaltung.setSemester(semester);
+		aVeranstaltung.setVeranstaltungsId(this.veranstaltungsId);
 		aVeranstaltung.setModulNr(this.modulNr);
 		aVeranstaltung.setModulName(this.modulName);
 		aVeranstaltung.setKursNr(this.kursNr);
@@ -230,6 +232,14 @@ public class VeranstaltungTO {
 
 	public void setSemesterTO(SemesterTO semesterTO) {
 		this.semesterTO = semesterTO;
+	}
+
+	public int getVeranstaltungsId() {
+		return veranstaltungsId;
+	}
+
+	public void setVeranstaltungsId(int veranstaltungsId) {
+		this.veranstaltungsId = veranstaltungsId;
 	}
 	
 	

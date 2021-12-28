@@ -70,6 +70,7 @@ public class Veranstaltung implements Serializable{
 	public VeranstaltungTO toVeranstaltungTO(SemesterTO semesterTO) {
 		VeranstaltungTO aVeranstaltungTO = new VeranstaltungTO();
 		aVeranstaltungTO.setSemesterTO(semesterTO);
+		aVeranstaltungTO.setVeranstaltungsId(this.veranstaltungsId);
 		aVeranstaltungTO.setModulNr(this.modulNr);
 		aVeranstaltungTO.setModulName(this.modulName);
 		aVeranstaltungTO.setKursNr(this.kursNr);

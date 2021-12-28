@@ -4,14 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.ManagedProperty;
+import javax.faces.component.html.HtmlDataTable;
 //import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import de.lehrplanung.planung.entity.SemesterTO;
 import de.lehrplanung.planung.entity.VeranstaltungTO;
+import de.lehrplanung.planung.usecase.IEingabenSpeichern;
 import de.lehrplanung.planung.usecase.IExcelExportieren;
 import de.lehrplanung.planung.usecase.ISemesterLaden;
 import de.lehrplanung.planung.usecase.IVeranstaltungenLaden;
@@ -34,8 +37,17 @@ public class VeranstaltungMB implements Serializable{
 	@Inject
 	IExcelExportieren excelExportierenFacade;
 	
+	@Inject
+	IEingabenSpeichern eingabenSpeichernFacade;
+	
 	@ManagedProperty(value="#{param.semester}")
 	private int urlId;
+	
+	@PostConstruct
+	public void init() {
+	    //veranstaltungTO = new VeranstaltungTO();
+		veranstaltungenListe = starteVeranstaltungenEingabeLaden();
+	}
 	
 	private String semesterTOString;
 	private SemesterTO semesterTO;
@@ -43,6 +55,9 @@ public class VeranstaltungMB implements Serializable{
 	
 	private VeranstaltungTO veranstaltungTO;
 	List<VeranstaltungTO> veranstaltungen = new ArrayList<>();
+	private List<VeranstaltungTO> veranstaltungenListe = new ArrayList<>();
+	
+	//private HtmlDataTable datatable;
 	
 	private String link;
 	
@@ -68,9 +83,9 @@ public class VeranstaltungMB implements Serializable{
 	}
 	
 	public List<VeranstaltungTO> starteVeranstaltungenEingabeLaden() {
-		System.out.println(this.urlId);
-		//urlId = 91;
-		this.semesterTO = semesterLadenFacade.semesterFindenById(this.urlId);
+		System.out.println(urlId);
+		urlId = 161;
+		this.semesterTO = semesterLadenFacade.semesterFindenById(urlId);
 		return this.semesterTO.getVeranstaltungen();
 	}
 	
@@ -79,8 +94,20 @@ public class VeranstaltungMB implements Serializable{
 		excelExportierenFacade.excelExportieren(this.semesterTO);
 	}
 	
-	public String eingabeSpeichernClicked() {
-		return "BACK_TO_HAUPTMENUE";
+	public void eingabeSpeichernClicked() {
+		System.out.println(urlId);
+		this.semesterTO = semesterLadenFacade.semesterFindenById(urlId);
+		this.semesterTO.setVeranstaltungen(veranstaltungenListe);
+//		veranstaltungen = this.semesterTO.getVeranstaltungen();
+//		for (VeranstaltungTO eineVeranstaltungTO:this.veranstaltungen) {
+//			int i = 0;
+//			datatable.setRows(i);
+//			VeranstaltungTO veranstaltungTO = (VeranstaltungTO) datatable.getRowData();
+//			eineVeranstaltungTO.setDozent(veranstaltungTO.getDozent());
+//			System.out.println(veranstaltungTO.getDozent());
+//			System.out.println("test");
+//		}
+		eingabenSpeichernFacade.eingabenSpeichern(this.semesterTO);
 	}
 	
 	public String eingabeAbbrechenClicked() {
@@ -146,4 +173,20 @@ public class VeranstaltungMB implements Serializable{
 	public void setUrlId(int urlId) {
 		this.urlId = urlId;
 	}
+
+	public List getVeranstaltungenListe() {
+		return veranstaltungenListe;
+	}
+
+	public void setVeranstaltungenListe(List veranstaltungenListe) {
+		this.veranstaltungenListe = veranstaltungenListe;
+	}
+
+//	public HtmlDataTable getDatatable() {
+//		return datatable;
+//	}
+
+//	public void setDatatable(HtmlDataTable datatable) {
+//		this.datatable = datatable;
+//	}
 }

@@ -124,7 +124,7 @@
 
 	<!-- Veranstaltungs Eingabe -->
 	<navigation-rule>
-		<from-view-id>/pages/protected/VeranstaltungsEingabe.xhtml</from-view-id>
+		<from-view-id>/pages/public/VeranstaltungsEingabe.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>BACK_TO_HAUPTMENUE</from-outcome>
 			<to-view-id>/pages/protected/Hauptmenue.xhtml</to-view-id>
