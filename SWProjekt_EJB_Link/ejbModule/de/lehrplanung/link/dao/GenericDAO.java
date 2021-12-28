@@ -1,4 +1,4 @@
-package dao;
+package de.lehrplanung.link.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 public abstract class GenericDAO<T> {
 
-private final String UNIT_NAME = "HA2_VERANSTALTUNG_EJB";
+private final String UNIT_NAME = "SWPROJEKT_LINK_EJB";
 
 	
 	@PersistenceContext(unitName=UNIT_NAME)

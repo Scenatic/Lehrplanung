@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
+import de.lehrplanung.link.usecase.ILinkVersenden;
 import de.lehrplanung.planung.entity.SemesterTO;
 import de.lehrplanung.planung.entity.VeranstaltungTO;
 import de.lehrplanung.planung.usecase.IEingabenSpeichern;
@@ -43,6 +44,9 @@ public class VeranstaltungMB implements Serializable{
 	
 	@Inject
 	IEingabenSpeichern eingabenSpeichernFacade;
+	
+	@Inject
+	ILinkVersenden linkVersendenFacade;
 	
 	@ManagedProperty(value="#{param.semester}")
 	private int urlId;
@@ -91,6 +95,12 @@ public class VeranstaltungMB implements Serializable{
 	public void linkErstellen() {
 		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
 		setLink("http://localhost:8080/SWProjekt_JSF_Client/pages/public/VeranstaltungsEingabe.xhtml?semester="+this.semesterTO.getSemesterId());
+	}
+	
+	public void mailVersenden() {
+		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+		linkVersendenFacade.linkVersenden(this.semesterTO);
+		
 	}
 	
 	public void starteVeranstaltungenUebersichtLaden() {

@@ -1,4 +1,4 @@
-package usecase.impl;
+package de.lehrplanung.link.usecase.impl;
 
 import java.util.Date;
 import java.util.Properties;
@@ -12,8 +12,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import de.lehrplanung.link.usecase.ILinkVersenden;
 import de.lehrplanung.planung.entity.SemesterTO;
-import usecase.ILinkVersenden;
+
 
 @Stateless
 public class LinkVersenden implements ILinkVersenden {
@@ -40,7 +41,7 @@ public class LinkVersenden implements ILinkVersenden {
 		Session session = Session.getInstance(props, auth);
 		
 		//FG von semester abfragen
-		final String toEmail = "niklas.flaspoehler@hochschule-osnabrueck.de"; // can be any email id 
+		final String toEmail = "niklas.flaspoehler@hs-osnabrueck.de"; // can be any email id 
 		
 		//FGMitglieder laden
 		
@@ -49,8 +50,10 @@ public class LinkVersenden implements ILinkVersenden {
 		
 		//EMail Inhalt erstellen
 		final String subject = "Neue Planungsverwaltung";
-		final String body = "Hallo liebe Kolleginnen und Kollegen, unter nachfolgendem Link ist die Planungsverwaltung fuer das neue Semester möglich. Bitte tragt euch ein."
-				+ link;
+		final String body = "Hallo liebe Kolleginnen und Kollegen,<br>"
+				+ "unter nachfolgendem Link ist die Planungsverwaltung fuer das neue Semester moeglich.<br> "
+				+ "Bitte tragt euch ein.<br>"
+				+ "<a href="+link+">Hier klicken</href>";
 		
 		//EMail senden
 		try
@@ -67,7 +70,8 @@ public class LinkVersenden implements ILinkVersenden {
 
 	      msg.setSubject(subject, "UTF-8");
 
-	      msg.setText(body, "UTF-8");
+	      //msg.setText(body, "UTF-8");
+	      msg.setContent(body, "text/html");
 
 	      msg.setSentDate(new Date());
 

@@ -21,7 +21,10 @@
 <!--			<h:link value="#{veranstaltungMB.link}" outcome="http://localhost:8080/SWProjekt_JSF_Client/pages/public/VeranstaltungsEingabe.xhtml?id=#{veranstaltungMB.semesterTOString}">
 				<f:param name="semester" value="1" />
 			</h:link>  -->
-			<h:outputLabel>#{veranstaltungMB.link}</h:outputLabel>	
+			<h:outputLabel>#{veranstaltungMB.link}</h:outputLabel>
+			<br/>
+			<br/>
+			<h:commandButton value="Link versenden" action="#{veranstaltungMB.mailVersenden()}" style=" width: 200px" />	
 		<!--  href="http://localhost:8080/SWProjekt_JSF_Client/pages/public/VeranstaltungsEingabe.xhtml?id=#{veranstaltungMB.semesterTOString}" -->
 		</h:form>
 	</h:body>

@@ -11,5 +11,10 @@
 	<classpathentry kind="lib" path="C:/Users/Niklas/Desktop/Studium/5. Semester/Softwareprojekt/javax.mail.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Niklas/Desktop/Studium/5. Semester/Softwareprojekt/javax.activation-1.2.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Niklas/Desktop/Studium/4. Semester/Verteilte Systeme/javaee-api-8.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/WildFly 21.0 Runtime">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.ejb"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
