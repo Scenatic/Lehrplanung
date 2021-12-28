@@ -32,6 +32,30 @@ public class FachgruppeTO implements Serializable {
 					new FGMitglied(fgMitgliedTO.getName(), fgMitgliedTO.getVorname(), fgMitgliedTO.geteMail(), fachgruppe));
 		return fachgruppe;
 	}
+
+	public int getFgId() {
+		return fgId;
+	}
+
+	public void setFgId(int fgId) {
+		this.fgId = fgId;
+	}
+
+	public String getFgName() {
+		return fgName;
+	}
+
+	public void setFgName(String fgName) {
+		this.fgName = fgName;
+	}
+
+	public Collection<FGMitgliedTO> getFgMitglieder() {
+		return fgMitglieder;
+	}
+
+	public void setFgMitglieder(Collection<FGMitgliedTO> fgMitglieder) {
+		this.fgMitglieder = fgMitglieder;
+	}
 	
 	
 }
