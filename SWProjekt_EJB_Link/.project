@@ -3,6 +3,8 @@
 	<name>SWProjekt_EJB_Link</name>
 	<comment></comment>
 	<projects>
+		<project>SWProjekt_EJB_Mitglieder</project>
+		<project>SWProjekt_EJB_Planung</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
