@@ -6,11 +6,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.ManagedProperty;
 import javax.faces.component.html.HtmlDataTable;
+import javax.faces.context.FacesContext;
 //import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 import de.lehrplanung.planung.entity.SemesterTO;
 import de.lehrplanung.planung.entity.VeranstaltungTO;
@@ -20,7 +23,8 @@ import de.lehrplanung.planung.usecase.ISemesterLaden;
 import de.lehrplanung.planung.usecase.IVeranstaltungenLaden;
 
 @Named("veranstaltungMB")
-@RequestScoped
+//@RequestScoped
+@SessionScoped
 public class VeranstaltungMB implements Serializable{
 
 	/**
@@ -43,23 +47,34 @@ public class VeranstaltungMB implements Serializable{
 	@ManagedProperty(value="#{param.semester}")
 	private int urlId;
 	
-	@PostConstruct
-	public void init() {
-	    //veranstaltungTO = new VeranstaltungTO();
-		veranstaltungenListe = starteVeranstaltungenEingabeLaden();
-	}
-	
 	private String semesterTOString;
 	private SemesterTO semesterTO;
 	List<String> geladeneSemester = new ArrayList<>();
 	
 	private VeranstaltungTO veranstaltungTO;
 	List<VeranstaltungTO> veranstaltungen = new ArrayList<>();
-	private List<VeranstaltungTO> veranstaltungenListe = new ArrayList<>();
+	List<VeranstaltungTO> veranstaltungenListe = new ArrayList<>();
 	
 	//private HtmlDataTable datatable;
 	
 	private String link;
+	
+	public void onload() {
+	    //veranstaltungTO = new VeranstaltungTO();
+		this.urlId = getUrlId();
+		veranstaltungenListe = starteVeranstaltungenEingabeLaden();
+	}
+	
+	@PostConstruct
+	public void init() {
+	    //veranstaltungTO = new VeranstaltungTO();
+		//this.urlId = getUrlId();
+		try {
+			veranstaltungenListe = starteVeranstaltungenEingabeLaden();
+		} catch (Exception e) {
+			
+		}
+	}
 	
 	public List<String> ladeSemester () {
 		geladeneSemester = semesterLadenFacade.semesterLaden();
@@ -83,9 +98,18 @@ public class VeranstaltungMB implements Serializable{
 	}
 	
 	public List<VeranstaltungTO> starteVeranstaltungenEingabeLaden() {
+		//urlId = getUrlId();
+		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		try {
+			urlId = Integer.valueOf(req.getParameter("semester"));
+		} catch (Exception e) {
+			
+		}
 		System.out.println(urlId);
-		urlId = 161;
+		//urlId = 161;
 		this.semesterTO = semesterLadenFacade.semesterFindenById(urlId);
+		//setUrlId(this.urlId);
+		//this.veranstaltungenListe = this.semesterTO.getVeranstaltungen();
 		return this.semesterTO.getVeranstaltungen();
 	}
 	
@@ -95,9 +119,11 @@ public class VeranstaltungMB implements Serializable{
 	}
 	
 	public void eingabeSpeichernClicked() {
-		System.out.println(urlId);
-		this.semesterTO = semesterLadenFacade.semesterFindenById(urlId);
+		//urlId = getUrlId();
+		System.out.println(this.urlId);
+		this.semesterTO = semesterLadenFacade.semesterFindenById(this.urlId);
 		this.semesterTO.setVeranstaltungen(veranstaltungenListe);
+		System.out.println(veranstaltungenListe);
 //		veranstaltungen = this.semesterTO.getVeranstaltungen();
 //		for (VeranstaltungTO eineVeranstaltungTO:this.veranstaltungen) {
 //			int i = 0;
