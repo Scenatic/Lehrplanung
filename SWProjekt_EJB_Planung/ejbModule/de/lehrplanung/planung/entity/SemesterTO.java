@@ -20,16 +20,17 @@ public class SemesterTO implements Serializable{
 	private String jahr;
 	private boolean sommersemester;
 	private List<VeranstaltungTO> veranstaltungen;
-	private FachgruppeTO fachgruppeTO;
+//	private FachgruppeTO fachgruppeTO;
+	private int fgId;
 	
 	public SemesterTO() {
 	}
 	
-	public SemesterTO(int semesterId, String jahr, boolean sommersemester, FachgruppeTO fachgruppeTO) {
+	public SemesterTO(int semesterId, String jahr, boolean sommersemester, int fgId) {
 		this.semesterId = semesterId;
 		this.jahr = jahr;
 		this.sommersemester = sommersemester;
-		this.fachgruppeTO = fachgruppeTO;
+		//this.fachgruppeTO = fachgruppeTO;
 	}
 	
 	public Semester toSemester(SemesterTO semesterTO) {
@@ -40,7 +41,8 @@ public class SemesterTO implements Serializable{
 		//veranstaltungen = new ArrayList<VeranstaltungTO>();
 		for (VeranstaltungTO veranstaltungenTO:this.veranstaltungen)
 			semester.getVeranstaltungen().add(veranstaltungenTO.toVeranstaltung(semester));
-		semester.setFachgruppe(fachgruppeTO.toFachgruppe());
+//		semester.setFachgruppe(fachgruppeTO.toFachgruppe());
+		semester.setFgId(fgId);
 		return semester;
 	}
 
@@ -76,11 +78,19 @@ public class SemesterTO implements Serializable{
 		this.veranstaltungen = veranstaltungen;
 	}
 
-	public FachgruppeTO getFachgruppeTO() {
-		return fachgruppeTO;
+//	public FachgruppeTO getFachgruppeTO() {
+//		return fachgruppeTO;
+//	}
+//
+//	public void setFachgruppeTO(FachgruppeTO fachgruppeTO) {
+//		this.fachgruppeTO = fachgruppeTO;
+//	}
+
+	public int getFgId() {
+		return fgId;
 	}
 
-	public void setFachgruppeTO(FachgruppeTO fachgruppeTO) {
-		this.fachgruppeTO = fachgruppeTO;
+	public void setFgId(int fgId) {
+		this.fgId = fgId;
 	}
 }

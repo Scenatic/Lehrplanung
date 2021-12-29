@@ -38,7 +38,18 @@
 		<managed-bean-name>veranstaltungMB</managed-bean-name>
 		<managed-bean-class>lehrplanung.mb.VeranstaltungMB</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>	
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>mailMB</managed-bean-name>
+		<managed-bean-class>lehrplanung.mb.MailMB</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>uebersichtMB</managed-bean-name>
+		<managed-bean-class>lehrplanung.mb.UebersichtMB</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+				
 
 	<!-- Hauptmenue -->
 	<navigation-rule>

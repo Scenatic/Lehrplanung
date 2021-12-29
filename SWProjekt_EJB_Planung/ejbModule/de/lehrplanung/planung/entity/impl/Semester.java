@@ -45,7 +45,8 @@ public class Semester implements Serializable {
 	@JoinColumn(name="semesterId")
 	private List<Veranstaltung> veranstaltungen;
 	
-	private Fachgruppe fachgruppe;
+//	private Fachgruppe fachgruppe;
+	private int fgId;
 	
 	public SemesterTO toSemesterTO() {
 		SemesterTO semesterTO = new SemesterTO(
@@ -59,7 +60,8 @@ public class Semester implements Serializable {
 		semesterTO.setVeranstaltungen(new ArrayList<VeranstaltungTO>());
 		for (Veranstaltung eineVeranstaltung:this.getVeranstaltungen())
 			semesterTO.getVeranstaltungen().add(eineVeranstaltung.toVeranstaltungTO(semesterTO));
-		semesterTO.setFachgruppeTO(fachgruppe.toFachgruppeTO());
+//		semesterTO.setFachgruppeTO(fachgruppe.toFachgruppeTO());
+		semesterTO.setFgId(this.fgId);
 		return semesterTO;
 	}
 	
@@ -70,7 +72,8 @@ public class Semester implements Serializable {
 		this.jahr = semesterTO.getJahr();
 		this.sommersemester = semesterTO.isSommersemester();
 		veranstaltungen = new ArrayList<Veranstaltung>();
-		this.fachgruppe = semesterTO.getFachgruppeTO().toFachgruppe();
+//		this.fachgruppe = semesterTO.getFachgruppeTO().toFachgruppe();
+		this.fgId = semesterTO.getFgId();
 	}
 	
 	public String getJahr() {
@@ -107,12 +110,20 @@ public class Semester implements Serializable {
 		
 	}
 
-	public Fachgruppe getFachgruppe() {
-		return fachgruppe;
+//	public Fachgruppe getFachgruppe() {
+//		return fachgruppe;
+//	}
+//
+//	public void setFachgruppe(Fachgruppe fachgruppe) {
+//		this.fachgruppe = fachgruppe;
+//	}
+
+	public int getFgId() {
+		return fgId;
 	}
 
-	public void setFachgruppe(Fachgruppe fachgruppe) {
-		this.fachgruppe = fachgruppe;
+	public void setFgId(int fgId) {
+		this.fgId = fgId;
 	}
 	
 	

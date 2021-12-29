@@ -20,7 +20,7 @@ import de.lehrplanung.mitglieder.entity.FGMitgliedTO;
 import de.lehrplanung.mitglieder.entity.FachgruppeTO;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
 @Table(name="SWProjekt_FGMitglied")
 public class FGMitglied implements Serializable{
@@ -56,12 +56,12 @@ public class FGMitglied implements Serializable{
 		this.fachgruppe = fachgruppe;
 	}
 	
-	public FGMitgliedTO toFGMitgliedTO() {
+	public FGMitgliedTO toFGMitgliedTO(FachgruppeTO fachgruppeTO) {
 		FGMitgliedTO fgMitgliedTO = new FGMitgliedTO();
 		fgMitgliedTO.setName(this.name);
 		fgMitgliedTO.setVorname(this.vorname);
 		fgMitgliedTO.seteMail(this.eMail);
-		FachgruppeTO fachgruppeTO = this.fachgruppe.toFachgruppeTO();
+		//FachgruppeTO fachgruppeTO = this.fachgruppe.toFachgruppeTO();
 		fgMitgliedTO.setFachgruppeTO(fachgruppeTO);
 		return fgMitgliedTO;
 	}
@@ -97,11 +97,6 @@ public class FGMitglied implements Serializable{
 	public void setFachgruppe(Fachgruppe fachgruppe) {
 		this.fachgruppe = fachgruppe;
 	}
-	
-	
-	
-	
-	
-	
+
 	
 }

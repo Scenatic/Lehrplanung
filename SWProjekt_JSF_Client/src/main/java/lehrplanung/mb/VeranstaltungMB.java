@@ -39,14 +39,14 @@ public class VeranstaltungMB implements Serializable{
 	@Inject
 	IVeranstaltungenLaden veranstaltungenLadenFacade;
 	
-	@Inject
-	IExcelExportieren excelExportierenFacade;
+//	@Inject
+//	IExcelExportieren excelExportierenFacade;
 	
 	@Inject
 	IEingabenSpeichern eingabenSpeichernFacade;
 	
-	@Inject
-	ILinkVersenden linkVersendenFacade;
+//	@Inject
+//	ILinkVersenden linkVersendenFacade;
 	
 	@ManagedProperty(value="#{param.semester}")
 	private int urlId;
@@ -56,12 +56,12 @@ public class VeranstaltungMB implements Serializable{
 	List<String> geladeneSemester = new ArrayList<>();
 	
 	private VeranstaltungTO veranstaltungTO;
-	List<VeranstaltungTO> veranstaltungen = new ArrayList<>();
+//	List<VeranstaltungTO> veranstaltungen = new ArrayList<>();
 	List<VeranstaltungTO> veranstaltungenListe = new ArrayList<>();
 	
 	//private HtmlDataTable datatable;
 	
-	private String link;
+//	private String link;
 	
 	public void onload() {
 	    //veranstaltungTO = new VeranstaltungTO();
@@ -81,11 +81,11 @@ public class VeranstaltungMB implements Serializable{
 		}
 	}
 	
-	//angelegte Semester fuer List Auswahl laden
-	public List<String> ladeSemester () {
-		geladeneSemester = semesterLadenFacade.semesterLaden();
-		return geladeneSemester;
-	}
+//	//angelegte Semester fuer List Auswahl laden
+//	public List<String> ladeSemester () {
+//		geladeneSemester = semesterLadenFacade.semesterLaden();
+//		return geladeneSemester;
+//	}
 	
 //	public List<VeranstaltungTO> starteVeranstaltungenUebersichtLaden() {
 //		semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
@@ -94,24 +94,24 @@ public class VeranstaltungMB implements Serializable{
 //		
 //	}
 
-	//Link in xhtml anzeigen
-	public void linkErstellen() {
-		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
-		setLink("http://localhost:8080/SWProjekt_JSF_Client/pages/public/VeranstaltungsEingabe.xhtml?semester="+this.semesterTO.getSemesterId());
-	}
+//	//Link in xhtml anzeigen
+//	public void linkErstellen() {
+//		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+//		setLink("http://localhost:8080/SWProjekt_JSF_Client/pages/public/VeranstaltungsEingabe.xhtml?semester="+this.semesterTO.getSemesterId());
+//	}
 	
-	//EMail Versand mit Link zur Dateneingabe an FGMitglieder starten
-	public void mailVersenden() {
-		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
-		linkVersendenFacade.linkVersenden(this.semesterTO);
-		
-	}
+//	//EMail Versand mit Link zur Dateneingabe an FGMitglieder starten
+//	public void mailVersenden() {
+//		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+//		linkVersendenFacade.linkVersenden(this.semesterTO);
+//		
+//	}
 	
-	//Uebersicht fuer FGSprecher anzeigen
-	public void starteVeranstaltungenUebersichtLaden() {
-		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
-		veranstaltungen = this.semesterTO.getVeranstaltungen();
-	}
+//	//Uebersicht fuer FGSprecher anzeigen
+//	public void starteVeranstaltungenUebersichtLaden() {
+//		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+//		veranstaltungen = this.semesterTO.getVeranstaltungen();
+//	}
 	
 	//Eingabetabelle fuer FGMitglieder anzeigen
 	//Wird in init() aufgerufen
@@ -137,11 +137,11 @@ public class VeranstaltungMB implements Serializable{
 		return this.semesterTO.getVeranstaltungen();
 	}
 	
-	//Export der Daten aus DB in Excel starten
-	public void download() {
-		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
-		excelExportierenFacade.excelExportieren(this.semesterTO);
-	}
+//	//Export der Daten aus DB in Excel starten
+//	public void download() {
+//		this.semesterTO = semesterLadenFacade.semesterFinden(this.semesterTOString);
+//		excelExportierenFacade.excelExportieren(this.semesterTO);
+//	}
 	
 	//Von FGMitglied eingegebene Daten speichern
 	public void eingabeSpeichernClicked() {
@@ -194,13 +194,13 @@ public class VeranstaltungMB implements Serializable{
 		this.semesterTO = semesterTO;
 	}
 
-	public List<VeranstaltungTO> getVeranstaltungen() {
-		return veranstaltungen;
-	}
-
-	public void setVeranstaltungen(List<VeranstaltungTO> veranstaltungen) {
-		this.veranstaltungen = veranstaltungen;
-	}
+//	public List<VeranstaltungTO> getVeranstaltungen() {
+//		return veranstaltungen;
+//	}
+//
+//	public void setVeranstaltungen(List<VeranstaltungTO> veranstaltungen) {
+//		this.veranstaltungen = veranstaltungen;
+//	}
 
 	public String getSemesterTOString() {
 		return semesterTOString;
@@ -210,13 +210,13 @@ public class VeranstaltungMB implements Serializable{
 		this.semesterTOString = semesterTOString;
 	}
 
-	public String getLink() {
-		return link;
-	}
+//	public String getLink() {
+//		return link;
+//	}
 
-	public void setLink(String link) {
-		this.link = link;
-	}
+//	public void setLink(String link) {
+//		this.link = link;
+//	}
 
 	public int getUrlId() {
 		return urlId;

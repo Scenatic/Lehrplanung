@@ -62,7 +62,9 @@ public class SemesterMB implements Serializable{
 	
 	public String semesterSpeichernClicked() {
 		FachgruppeTO fachgruppeTO = fachgruppeLadenFacade.fachgruppeFinden(fachgruppeString);
-		this.semesterTO.setFachgruppeTO(fachgruppeTO);
+		System.out.println(fachgruppeTO.getFgName());
+//		this.semesterTO.setFachgruppeTO(fachgruppeTO);
+		this.semesterTO.setFgId(fachgruppeTO.getFgId());
 		semesterAnlegenFacade.semesterAnlegen(this.semesterTO);
 		this.initBean();
 		return "BACK_TO_HAUPTMENUE";

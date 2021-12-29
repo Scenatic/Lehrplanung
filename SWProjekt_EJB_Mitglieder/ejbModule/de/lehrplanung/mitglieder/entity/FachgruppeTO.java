@@ -1,6 +1,7 @@
 package de.lehrplanung.mitglieder.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,6 +19,10 @@ public class FachgruppeTO implements Serializable {
 	String fgName;
 	private List<FGMitgliedTO> fgMitglieder;
 	
+	public FachgruppeTO() {
+		
+	}
+	
 	public FachgruppeTO(int fgId, String fgName) {
 		super();
 		this.fgId = fgId;
@@ -25,9 +30,10 @@ public class FachgruppeTO implements Serializable {
 	}
 	
 	public Fachgruppe toFachgruppe() {
-		Fachgruppe fachgruppe = new Fachgruppe(
-				this.fgId,
-				this.fgName);
+		Fachgruppe fachgruppe = new Fachgruppe();
+		//fachgruppe.setFgId(fgId);
+		fachgruppe.setFgName(fgName);
+		//fgMitglieder = new ArrayList<FGMitgliedTO>();
 		for (FGMitgliedTO fgMitgliedTO:this.fgMitglieder)
 			fachgruppe.getFgMitglieder().add(
 					new FGMitglied(fgMitgliedTO.getName(), fgMitgliedTO.getVorname(), fgMitgliedTO.geteMail(), fachgruppe));

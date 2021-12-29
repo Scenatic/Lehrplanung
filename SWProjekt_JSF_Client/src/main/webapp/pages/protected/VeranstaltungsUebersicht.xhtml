@@ -19,17 +19,17 @@
 				<f:setPropertyActionListener target="#{veranstaltungMB.veranstaltungTO}" value="#{veranstaltung}"/>
 			</h:commandButton>
  --> 				
-		<h:commandButton value="Exportieren" action="#{veranstaltungMB.download()}" style=" width: 200px" />
-		<h:commandButton value="Abbruch" action="#{veranstaltungMB.eingabeAbbrechenClicked()}" style=" width: 200px" />
+		<h:commandButton value="Exportieren" action="#{uebersichtMB.download()}" style=" width: 200px" />
+		<h:commandButton value="Abbruch" action="#{uebersichtMB.uebersichtAbbrechenClicked()}" style=" width: 200px" />
 		
  			<p>Semester auswaehlen:</p>
-			<h:selectOneMenu id="list" value="#{veranstaltungMB.semesterTOString}">
-				<f:selectItems value="#{veranstaltungMB.ladeSemester()}"/>
+			<h:selectOneMenu id="list" value="#{uebersichtMB.semesterTOString}">
+				<f:selectItems value="#{uebersichtMB.ladeSemester()}"/>
 			</h:selectOneMenu> 	
-			<h:commandButton value="Anzeigen" action="#{veranstaltungMB.starteVeranstaltungenUebersichtLaden()}" style=" width: 200px" />
+			<h:commandButton value="Anzeigen" action="#{uebersichtMB.starteVeranstaltungenUebersichtLaden()}" style=" width: 200px" />
 		
 		<h:dataTable 
- 				value="#{veranstaltungMB.semesterTO.veranstaltungen}" 
+ 				value="#{uebersichtMB.semesterTO.veranstaltungen}" 
 	 			var="veranstaltung"
 	 			styleClass="table" 
 	 			headerClass="tableColumnsHeader"

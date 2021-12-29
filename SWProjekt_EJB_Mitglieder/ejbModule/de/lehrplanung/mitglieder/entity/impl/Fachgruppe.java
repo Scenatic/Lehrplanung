@@ -1,6 +1,7 @@
 package de.lehrplanung.mitglieder.entity.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -17,10 +18,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import de.lehrplanung.mitglieder.entity.FGMitgliedTO;
 import de.lehrplanung.mitglieder.entity.FachgruppeTO;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
 @Table(name="SWProjekt_Fachgruppe")
 public class Fachgruppe implements Serializable {
@@ -42,18 +44,23 @@ public class Fachgruppe implements Serializable {
 	private List<FGMitglied> fgMitglieder;
 	
 	public Fachgruppe() {
+		fgMitglieder = new ArrayList<FGMitglied>();
 	}
 	
 	public Fachgruppe(int fgId, String fgName) {
 		super();
 		this.fgId = fgId;
 		this.fgName = fgName;
+		fgMitglieder = new ArrayList<FGMitglied>();
 	}
 	
 	public FachgruppeTO toFachgruppeTO() {
-		FachgruppeTO fachgruppeTO = new FachgruppeTO(
-				this.getFgId(),
-				this.getFgName());
+		FachgruppeTO fachgruppeTO = new FachgruppeTO();
+		fachgruppeTO.setFgId(this.fgId);
+		fachgruppeTO.setFgName(this.fgName);
+		fachgruppeTO.setFgMitglieder(new ArrayList<FGMitgliedTO>());
+		for (FGMitglied fgMitglied:this.getFgMitglieder())
+			fachgruppeTO.getFgMitglieder().add(fgMitglied.toFGMitgliedTO(fachgruppeTO));
 		return fachgruppeTO;
 	}
 	

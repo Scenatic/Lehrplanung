@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import de.lehrplanung.mitglieder.dao.FGMitgliedDAO;
 import de.lehrplanung.mitglieder.entity.FGMitgliedTO;
+import de.lehrplanung.mitglieder.entity.FachgruppeTO;
 import de.lehrplanung.mitglieder.entity.impl.FGMitglied;
 import de.lehrplanung.mitglieder.usecase.IMitgliederLaden;
 
@@ -18,11 +19,11 @@ public class MitgliederLaden implements IMitgliederLaden {
 	FGMitgliedDAO fgMitgliedDAO;
 	
 	@Override
-	public List<FGMitgliedTO> mitgliederLaden() {
+	public List<FGMitgliedTO> mitgliederLaden(FachgruppeTO fachgruppeTO) {
 		
 		List<FGMitglied> aList = fgMitgliedDAO.findAll();
 		List<FGMitgliedTO> returnList = new ArrayList<FGMitgliedTO>();
-		for (FGMitglied aFGMitglied : aList) returnList.add(aFGMitglied.toFGMitgliedTO());
+		for (FGMitglied aFGMitglied : aList) returnList.add(aFGMitglied.toFGMitgliedTO(fachgruppeTO));
 		return returnList;
 	}
 

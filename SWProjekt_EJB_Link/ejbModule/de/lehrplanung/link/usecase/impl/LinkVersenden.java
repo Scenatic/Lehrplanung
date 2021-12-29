@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Properties;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -14,15 +15,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import de.lehrplanung.link.usecase.ILinkVersenden;
+import de.lehrplanung.mitglieder.dao.FachgruppeDAO;
 import de.lehrplanung.mitglieder.entity.FGMitgliedTO;
 import de.lehrplanung.mitglieder.entity.FachgruppeTO;
 import de.lehrplanung.mitglieder.entity.impl.FGMitglied;
+import de.lehrplanung.mitglieder.entity.impl.Fachgruppe;
 import de.lehrplanung.planung.entity.SemesterTO;
 
 
 @Stateless
 public class LinkVersenden implements ILinkVersenden {
 
+	@Inject
+	FachgruppeDAO fachgruppeDAO;
+	
 	@Override
 	public void linkVersenden(SemesterTO semesterTO) {
 		
@@ -47,10 +53,15 @@ public class LinkVersenden implements ILinkVersenden {
 		final String toEmail = "niklas.flaspoehler@hs-osnabrueck.de"; // can be any email id
 		
 		//FG von semester abfragen
-		FachgruppeTO fachgruppeTO = semesterTO.getFachgruppeTO();
+//		FachgruppeTO fachgruppeTO = semesterTO.getFachgruppeTO();
+//		System.out.println(fachgruppeTO.getFgName());
+		Fachgruppe fachgruppe = fachgruppeDAO.find(semesterTO.getFgId());
+		FachgruppeTO fachgruppeTO = fachgruppe.toFachgruppeTO();
 		
 		//FGMitglieder laden
 		List<FGMitgliedTO> fgMitgliederTO = fachgruppeTO.getFgMitglieder();
+		System.out.println(fgMitgliederTO);
+		
 		
 		//FGMitglieder EMails als zusammenhaengender String
 		String eMailListe = "";
