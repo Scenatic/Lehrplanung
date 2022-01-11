@@ -38,6 +38,7 @@ public class EingabenSpeichern implements IEingabenSpeichern{
 			System.out.println(aVeranstaltung.getModulName());
 			//try{
 				veranstaltung.setDozent(aVeranstaltung.getDozent());
+				veranstaltung.setBemerkung(aVeranstaltung.getBemerkung());
 			//} catch(NullPointerException e) {
 				
 			//};

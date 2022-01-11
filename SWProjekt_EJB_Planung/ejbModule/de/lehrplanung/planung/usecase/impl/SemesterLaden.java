@@ -6,6 +6,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import de.lehrplanung.mitglieder.dao.FachgruppeDAO;
+import de.lehrplanung.mitglieder.entity.FachgruppeTO;
 import de.lehrplanung.planung.dao.SemesterDAO;
 import de.lehrplanung.planung.entity.SemesterTO;
 import de.lehrplanung.planung.entity.impl.Semester;
@@ -17,6 +19,9 @@ public class SemesterLaden implements ISemesterLaden{
 	@Inject
 	SemesterDAO semesterDAO;
 	
+	@Inject
+	FachgruppeDAO fachgruppeDAO;
+	
 	@Override
 	public List<String> semesterLaden() {
 		
@@ -25,12 +30,13 @@ public class SemesterLaden implements ISemesterLaden{
 		for (Semester aSemester : aList) semesterTOList.add(aSemester.toSemesterTO());
 		List<String> returnList = new ArrayList<String>();
 		for(SemesterTO aSemesterTO: semesterTOList) {
+			FachgruppeTO aFachgruppeTO = fachgruppeDAO.find(aSemesterTO.getFgId()).toFachgruppeTO();
 			if (aSemesterTO.isSommersemester()) {
-				String returnString = aSemesterTO.getSemesterId() +":   SoSe " + aSemesterTO.getJahr();
+				String returnString = aSemesterTO.getSemesterId() +":   SoSe " + aSemesterTO.getJahr()+ "   "+aFachgruppeTO.getFgName();
 				returnList.add(returnString);
 			} else {
 				int jahrEnde = Integer.valueOf(aSemesterTO.getJahr()) + 1;
-				String returnString = aSemesterTO.getSemesterId() +":   WiSe " + aSemesterTO.getJahr() + "/" + jahrEnde;
+				String returnString = aSemesterTO.getSemesterId() +":   WiSe " + aSemesterTO.getJahr() + "/" + jahrEnde+"   "+aFachgruppeTO.getFgName();
 				returnList.add(returnString);
 			}
 		}
